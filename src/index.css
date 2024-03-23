@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;1000&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.text-gradient {
+  background-image: linear-gradient(to left, #6764ff, #5b94c6);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
