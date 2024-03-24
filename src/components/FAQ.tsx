@@ -5,7 +5,9 @@ export const FAQ = () => {
     <section className="py-8 lg:py-20" id="faq">
       <div className="container">
         <div className="text-center">
-          <h2 className="text-4xl font-semibold text-base-content">FAQs</h2>
+          <h2 className="text-4xl font-semibold text-base-content text-gradient-light">
+            FAQs
+          </h2>
           <p className="mt-2 text-lg">
             Understand more regarding the use of LiftRight AI and Pricing.
           </p>

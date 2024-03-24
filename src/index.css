@@ -10,3 +10,10 @@
   background-clip: text;
   -webkit-background-clip: text;
 }
+
+.text-gradient-light {
+  background-image: linear-gradient(to left, #d3d2ff, #90cbff);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}

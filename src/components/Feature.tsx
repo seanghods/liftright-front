@@ -11,7 +11,9 @@ export const Feature = () => {
 
       <div className="container">
         <div className="flex flex-col items-center">
-          <h2 className="inline text-4xl font-semibold">Real-Time Insights</h2>
+          <h2 className="inline text-gradient-light text-4xl font-semibold">
+            Real-Time Form Insight
+          </h2>
 
           <p className="mt-4 text-lg sm:text-center">
             Upload a video and have specific, personalized feedback within

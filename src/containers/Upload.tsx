@@ -8,6 +8,9 @@ const Upload = (): JSX.Element => {
           Credits: #
         </h1>
         <VideoUploader />
+        <div className="w-full flex justify-center">
+          <button className="btn btn-primary mb-12 w-28">Submit</button>
+        </div>
       </div>
     </>
   );

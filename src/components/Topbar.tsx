@@ -70,7 +70,10 @@ export const Topbar = () => {
                 </Drawer>
               </div>
 
-              <a href="/" className="text-xl font-bold tracking-tighter">
+              <a
+                href="/"
+                className="text-gradient-light text-xl font-bold tracking-tighter"
+              >
                 LiftRight
               </a>
             </Navbar.Start>

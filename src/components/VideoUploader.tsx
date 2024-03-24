@@ -24,7 +24,7 @@ export const VideoUploader: React.FC = () => {
   }, [uppy]);
   return (
     <div className="w-full flex justify-center my-12">
-      <Dashboard theme="dark" uppy={uppy} />
+      <Dashboard width="250" theme="dark" uppy={uppy} />
     </div>
   );
 };
