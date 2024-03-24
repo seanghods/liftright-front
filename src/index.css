@@ -17,3 +17,12 @@
   background-clip: text;
   -webkit-background-clip: text;
 }
+
+.uppy-Dashboard-Item-previewInnerWrap {
+  background-color: transparent !important;
+}
+
+.uppy-Dashboard-Item-previewImg {
+  padding: 0 !important;
+  border-radius: 10px !important;
+}

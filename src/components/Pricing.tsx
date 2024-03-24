@@ -4,7 +4,7 @@ export const Pricing = () => {
   return (
     <>
       <section className="py-8 lg:py-20" id="pricing">
-        <div className="container">
+        <div data-aos="fade-up" className="container">
           <div className="text-center">
             <h2 className="text-4xl font-semibold text-gradient-light">
               Credit Pricing

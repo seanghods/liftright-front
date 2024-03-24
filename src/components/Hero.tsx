@@ -1,27 +1,14 @@
-import heroImage from "@/assets/landing/saas-hero.png";
 import { Button } from "react-daisyui";
-import Card3d from "card3d";
-import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import landingVid from "../assets/landing/landing-vid3.mov";
 
 export const Hero = () => {
-  const heroImageRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (heroImageRef.current) {
-      new Card3d(heroImageRef.current, {
-        perspective: 1000,
-        fullPageListening: true,
-      });
-    }
-  }, [heroImageRef.current]);
-
   return (
     <section className="py-8 lg:py-20" id="home">
       <div className="container">
-        <div className="grid gap-12 lg:grid-cols-2">
-          <div>
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div data-aos="fade-right">
             <h1 className="text-4xl font-black tracking-tighter lg:text-6xl lg:leading-none">
               Upgrade your weightlifting form with
               <span className="text-gradient"> LiftRight </span>
@@ -46,16 +33,23 @@ export const Hero = () => {
 
           <div>
             <div
-              className="rounded-2xl bg-gradient-to-r from-indigo-200 via-red-200 to-purple-300 p-3"
-              ref={heroImageRef}
+              data-aos="fade-left"
+              className="h-full flex flex-col justify-center"
             >
-              <img
-                alt="SaaS"
-                id="hero-image"
+              {/* <div className="rounded-2xl bg-gradient-to-r from-blue-900 via-sky-400 to-indigo-900 p-2"> */}
+              <video
+                width="100%"
+                height="auto"
+                autoplay="true"
                 className="rounded-lg"
-                src={heroImage}
-              />
+                muted
+                loop
+              >
+                <source src={landingVid} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
+            {/* </div> */}
           </div>
         </div>
 

@@ -1,5 +1,5 @@
-import feature1Image from "@/assets/landing/feature-1.png";
-import feature2Image from "@/assets/landing/feature-2.png";
+import feature1Image from "@/assets/landing/feature-p1.jpeg";
+import feature2Image from "@/assets/landing/feature-p2.jpeg";
 import { Badge } from "react-daisyui";
 
 export const Feature = () => {
@@ -10,7 +10,7 @@ export const Feature = () => {
       </div>
 
       <div className="container">
-        <div className="flex flex-col items-center">
+        <div data-aos="fade-up" className="flex flex-col items-center">
           <h2 className="inline text-gradient-light text-4xl font-semibold">
             Real-Time Form Insight
           </h2>
@@ -25,7 +25,10 @@ export const Feature = () => {
           </p>
         </div>
 
-        <div className="relative z-[2] mt-8 grid gap-8 lg:mt-20 lg:grid-cols-2 lg:gap-12">
+        <div
+          data-aos="fade-up"
+          className="relative z-[2] mt-8 grid gap-8 lg:mt-20 lg:grid-cols-2 lg:gap-12"
+        >
           <div className="overflow-hidden rounded-lg bg-base-200 shadow-md transition-all hover:shadow-xl">
             <img
               alt="saas img"
@@ -53,7 +56,10 @@ export const Feature = () => {
           </div>
         </div>
 
-        <div className="mt-8 grid gap-8 lg:mt-20 lg:grid-cols-2 lg:gap-12">
+        <div
+          data-aos="fade-up"
+          className="mt-8 grid gap-8 lg:mt-20 lg:grid-cols-2 lg:gap-12"
+        >
           <div>
             <Badge color={"primary"}>Analysis</Badge>
             <h3 className="mt-2 text-3xl font-semibold">

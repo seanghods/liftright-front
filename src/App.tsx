@@ -6,6 +6,7 @@ import { Footer } from "./components/Footer.tsx";
 import { ThemeToggler } from "./components/ThemeToggler.tsx";
 import Upload from "./containers/Upload.tsx";
 import { ScrollToTop } from "./utils/helpers.ts";
+import Response from "./containers/Response.tsx";
 
 function App() {
   const { theme } = useTheme();
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/upload" element={<Upload />} />
+          <Route path="/response:id" element={<Response />} />
         </Routes>
         <Footer />
         <ThemeToggler />

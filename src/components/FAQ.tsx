@@ -3,7 +3,7 @@ import { Collapse } from "react-daisyui";
 export const FAQ = () => {
   return (
     <section className="py-8 lg:py-20" id="faq">
-      <div className="container">
+      <div data-aos="fade-up" className="container">
         <div className="text-center">
           <h2 className="text-4xl font-semibold text-base-content text-gradient-light">
             FAQs

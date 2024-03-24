@@ -46,16 +46,16 @@ export const Topbar = () => {
                       </Menu.Item>
 
                       <Menu.Item className="font-medium">
-                        <a href="#home">Home</a>
+                        <a href="/#home">Home</a>
                       </Menu.Item>
                       <Menu.Item className="font-medium">
-                        <a href="#features">Features</a>
+                        <a href="/#features">Features</a>
                       </Menu.Item>
                       <Menu.Item className="font-medium">
-                        <a href="#pricing">Pricing</a>
+                        <a href="/#pricing">Pricing</a>
                       </Menu.Item>
                       <Menu.Item className="font-medium">
-                        <a href="#faq">FAQ</a>
+                        <a href="/#faq">FAQ</a>
                       </Menu.Item>
                     </Menu>
                   }
@@ -81,16 +81,16 @@ export const Topbar = () => {
             <Navbar.Center className="hidden lg:flex">
               <Menu horizontal size="sm" className="gap-2 px-1">
                 <Menu.Item className="font-medium">
-                  <a href="#home">Home</a>
+                  <a href="/#home">Home</a>
                 </Menu.Item>
                 <Menu.Item className="font-medium">
-                  <a href="#features">Features</a>
+                  <a href="/#features">Features</a>
                 </Menu.Item>
                 <Menu.Item className="font-medium">
-                  <a href="#pricing">Pricing</a>
+                  <a href="/#pricing">Pricing</a>
                 </Menu.Item>
                 <Menu.Item className="font-medium">
-                  <a href="#faq">FAQ</a>
+                  <a href="/#faq">FAQ</a>
                 </Menu.Item>
               </Menu>
             </Navbar.Center>
