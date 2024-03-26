@@ -5,4 +5,5 @@ export const BASE_URL =
 
 export const API_ROUTES = {
   base: `${BASE_URL}`,
+  response: `${BASE_URL}/response`,
 };

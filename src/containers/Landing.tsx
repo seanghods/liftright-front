@@ -1,6 +1,7 @@
 import { FAQ, Feature, Hero, Pricing } from "@/components";
+import React from "react";
 
-const Landing = (): JSX.Element => {
+const Landing: React.FC = () => {
   return (
     <>
       <Hero />

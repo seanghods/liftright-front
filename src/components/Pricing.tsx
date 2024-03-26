@@ -1,6 +1,7 @@
+import React from "react";
 import { Badge, Button, Card } from "react-daisyui";
 
-export const Pricing = () => {
+export const Pricing: React.FC = () => {
   return (
     <>
       <section className="py-8 lg:py-20" id="pricing">

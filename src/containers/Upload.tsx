@@ -1,6 +1,7 @@
 import { VideoUploader } from "@/components";
+import React from "react";
 
-const Upload = (): JSX.Element => {
+const Upload: React.FC = () => {
   return (
     <>
       <div className="container">

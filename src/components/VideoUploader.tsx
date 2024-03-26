@@ -4,11 +4,31 @@ import "@uppy/core/dist/style.css";
 import "@uppy/dashboard/dist/style.css";
 import { Dashboard } from "@uppy/react/";
 import XHRUpload from "@uppy/xhr-upload";
-import { LoadingIcon } from "./Icons";
+import { LoadingIcon, Xmark } from "./sub-components/Icons";
+import LoadingAnalysis from "./sub-components/LoadingAnalysis";
+
+export type ApiResponse = {
+  message: string | null;
+  s3Link: string | null;
+  id: string | null;
+};
 
 export const VideoUploader: React.FC = () => {
   const [uploadReady, setUploadReady] = useState<Boolean>(false);
   const [awaitingResponse, setAwaitingResponse] = useState<Boolean>(false);
+  const [error, setError] = useState<Boolean>(false);
+  const [apiResponse, setApiResponse] = useState<ApiResponse>({
+    message: null,
+    s3Link: null,
+    id: null,
+  });
+  // useEffect(() => {
+  //   setTimeout(
+  //     () => setApiResponse({ message: "hi", s3: null, id: "5341ea" }),
+  //     3000
+  //   );
+  // }, []);
+  useEffect(() => console.log(apiResponse), [apiResponse]);
   const uppy = useMemo(() => {
     const uppyInstance = new Uppy({
       meta: { type: "video" },
@@ -58,58 +78,87 @@ export const VideoUploader: React.FC = () => {
     uppy.on("complete", (result: UploadResult) => {
       if (result.successful.length > 0) {
         const response = result.successful[0].response;
-        console.log(response.body.data);
+        setApiResponse(response.body);
+        console.log(response.body);
       } else {
         const response = result.failed[0].response;
         console.log(`Error: ${response.body.err}`);
+        setError(true);
       }
     });
     return () => uppy.close();
   }, [uppy]);
   return (
     <>
-      <div data-aos="fade-up" className="w-full flex justify-center my-12">
-        <Dashboard
-          hideUploadButton={true}
-          width="250"
-          theme="dark"
-          uppy={uppy}
-          note="Upload one video."
-        />
-      </div>
-      <div data-aos="fade-up" className="w-full flex justify-center">
-        <button
-          className={`btn mb-12 w-28 ${
-            uploadReady ? "btn-primary" : "btn-disabled !bg-gray-900"
-          } ${awaitingResponse ? "btn-disabled brightness-150" : null}`}
-          onClick={() => {
-            if (uploadReady) {
-              uppy.upload();
-              setAwaitingResponse(true);
-              document.getElementById("submit_modal").showModal();
-            }
-          }}
-        >
-          {awaitingResponse ? "Submitting..." : "Submit"}
-        </button>
-        <dialog id="submit_modal" className="modal">
-          <div className="modal-box">
-            <form method="dialog">
-              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                ✕
-              </button>
-            </form>
-            <h3 className="font-bold text-lg">Processing</h3>
-            <div className="flex w-full justify-center my-5">
-              <LoadingIcon />
-            </div>
-            <p className="py-4">
-              Your video is currently processing and being analyzed by
-              LiftRight. Please allow up to 30 seconds for a complete response.
-            </p>
+      {awaitingResponse ? (
+        <LoadingAnalysis apiResponse={apiResponse} error={error} />
+      ) : (
+        <>
+          <div data-aos="fade-up" className="w-full flex justify-center my-12">
+            <Dashboard
+              hideUploadButton={true}
+              width="250"
+              theme="dark"
+              uppy={uppy}
+              note="Upload one video."
+            />
           </div>
-        </dialog>
-      </div>
+          <div data-aos="fade-up" className="w-full flex justify-center">
+            <button
+              className={`btn mb-12 w-28 ${
+                uploadReady ? "btn-primary" : "btn-disabled !bg-gray-900"
+              } ${awaitingResponse ? "btn-disabled brightness-150" : null}`}
+              onClick={() => {
+                if (uploadReady) {
+                  uppy.upload();
+                  setAwaitingResponse(true);
+                  document.getElementById("submit_modal").showModal();
+                }
+              }}
+            >
+              {awaitingResponse ? "Submitting..." : "Submit"}
+            </button>
+            <dialog
+              onClose={() => setError(false)}
+              id="submit_modal"
+              className="modal"
+            >
+              <div className="modal-box">
+                <form method="dialog">
+                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                    ✕
+                  </button>
+                </form>
+                {error ? (
+                  <>
+                    <h3 className="font-bold text-lg">Error!</h3>
+                    <div className="flex w-full justify-center mt-10">
+                      <Xmark />
+                    </div>
+                    <p className="py-4">
+                      Unfortunately, Liftright AI hit a snag in processing your
+                      video. The error has been reported and your credit has
+                      been refunded to you. Please try again soon.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <h3 className="font-bold text-lg">Processing</h3>
+                    <div className="flex w-full justify-center my-5">
+                      <LoadingIcon />
+                    </div>
+                    <p className="py-4">
+                      Your video is currently processing and being analyzed by
+                      LiftRight. Please allow up to 30 seconds for a complete
+                      response.
+                    </p>
+                  </>
+                )}
+              </div>
+            </dialog>
+          </div>
+        </>
+      )}
     </>
   );
 };

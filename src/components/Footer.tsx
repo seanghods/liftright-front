@@ -1,11 +1,12 @@
+import React from "react";
 import { Button, Input } from "react-daisyui";
 
-export const Footer = () => {
+export const Footer: React.FC = () => {
   return (
     <footer className="bg-neutral text-neutral-content" data-theme="dark">
       <div className="grid lg:grid-cols-2">
         <div>
-          <div className="md-12 border-e border-white/20 p-8 sm:p-10 md:px-16 xl:px-40 xl:py-16">
+          <div className="md-12  p-8 sm:p-10 md:px-16 xl:px-40 xl:py-16">
             <div className="grid grid-cols-2 gap-6 md:grid-cols-3">
               <div className="flex flex-col gap-5">
                 <h2 className="text-xl font-medium">Company</h2>
@@ -123,7 +124,7 @@ export const Footer = () => {
         </div>
 
         <div className="order-first lg:order-last">
-          <form className="md-12 border-t border-white/20 p-8 sm:p-10 md:px-16 xl:px-40 xl:py-16">
+          <form className="md-12 p-8 sm:p-10 md:px-16 xl:px-40 xl:py-16">
             <h2 className="mt-4 text-3xl font-medium">Help to get started?</h2>
             <div className="mt-4 space-y-2">
               <div>

@@ -1,8 +1,9 @@
 import { Button } from "react-daisyui";
 import { useNavigate } from "react-router-dom";
 import landingVid from "../assets/landing/landing-vid3.mov";
+import React from "react";
 
-export const Hero = () => {
+export const Hero: React.FC = () => {
   const navigate = useNavigate();
   return (
     <section className="py-8 lg:py-20" id="home">
@@ -40,7 +41,7 @@ export const Hero = () => {
               <video
                 width="100%"
                 height="auto"
-                autoplay="true"
+                autoPlay={true}
                 className="rounded-lg"
                 muted
                 loop

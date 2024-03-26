@@ -1,8 +1,8 @@
 import { Button, Drawer, Menu, Navbar } from "react-daisyui";
 import { Menu as MenuIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-export const Topbar = () => {
+export const Topbar: React.FC = () => {
   const [drawerOpened, setDrawerOpened] = useState(false);
   const [atTop, setAtTop] = useState(true);
 
@@ -57,6 +57,9 @@ export const Topbar = () => {
                       <Menu.Item className="font-medium">
                         <a href="/#faq">FAQ</a>
                       </Menu.Item>
+                      <Menu.Item className="font-medium">
+                        <a href="/upload">Upload</a>
+                      </Menu.Item>
                     </Menu>
                   }
                 >
@@ -91,6 +94,9 @@ export const Topbar = () => {
                 </Menu.Item>
                 <Menu.Item className="font-medium">
                   <a href="/#faq">FAQ</a>
+                </Menu.Item>
+                <Menu.Item className="font-medium">
+                  <a href="/upload">Upload</a>
                 </Menu.Item>
               </Menu>
             </Navbar.Center>

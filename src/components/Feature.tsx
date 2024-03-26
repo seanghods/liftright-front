@@ -2,7 +2,7 @@ import feature1Image from "@/assets/landing/feature-p1.jpeg";
 import feature2Image from "@/assets/landing/feature-p2.jpeg";
 import { Badge } from "react-daisyui";
 
-export const Feature = () => {
+export const Feature: React.FC = () => {
   return (
     <section className="relative py-8 lg:py-20" id="features">
       <div className="absolute start-[10%] z-0">

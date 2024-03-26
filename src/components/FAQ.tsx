@@ -1,6 +1,7 @@
+import React from "react";
 import { Collapse } from "react-daisyui";
 
-export const FAQ = () => {
+export const FAQ: React.FC = () => {
   return (
     <section className="py-8 lg:py-20" id="faq">
       <div data-aos="fade-up" className="container">
