@@ -18,10 +18,10 @@ const LoadingAnalysis: React.FC<LoadingAnalysisProps> = ({
 
   useEffect(() => {
     // React to changes in apiResponse.message to potentially finalize the animation.
-    if (apiResponse.message && !finalizeAnimation) {
+    if (apiResponse?.message && !finalizeAnimation) {
       setFinalizeAnimation(true);
     }
-  }, [apiResponse.message, finalizeAnimation]);
+  }, [apiResponse?.message, finalizeAnimation]);
 
   useEffect(() => {
     // Start the animation only once, and manage progression and finalization within.
@@ -62,7 +62,7 @@ const LoadingAnalysis: React.FC<LoadingAnalysisProps> = ({
     };
   }, [finalizeAnimation]);
   useEffect(() => {
-    if (progress == 100 && apiResponse.message)
+    if (progress == 100 && apiResponse?.message)
       setTimeout(
         () =>
           navigate(`/response/${apiResponse.id}`, {

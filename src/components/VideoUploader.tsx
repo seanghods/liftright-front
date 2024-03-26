@@ -14,9 +14,9 @@ export type ApiResponse = {
 };
 
 export const VideoUploader: React.FC = () => {
-  const [uploadReady, setUploadReady] = useState<Boolean>(false);
-  const [awaitingResponse, setAwaitingResponse] = useState<Boolean>(false);
-  const [error, setError] = useState<Boolean>(false);
+  const [uploadReady, setUploadReady] = useState<boolean>(false);
+  const [awaitingResponse, setAwaitingResponse] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
   const [apiResponse, setApiResponse] = useState<ApiResponse>({
     message: null,
     s3Link: null,
@@ -49,7 +49,7 @@ export const VideoUploader: React.FC = () => {
   }, []);
   useEffect(() => {
     uppy.on("file-added", (file) => {
-      if (file.type.includes("video")) {
+      if (file.type?.includes("video")) {
         const thumbnailCount = 1;
         const VideoThumbnails = (window as any).VideoThumbnails;
         const thumbnails = new VideoThumbnails({
@@ -78,11 +78,11 @@ export const VideoUploader: React.FC = () => {
     uppy.on("complete", (result: UploadResult) => {
       if (result.successful.length > 0) {
         const response = result.successful[0].response;
-        setApiResponse(response.body);
-        console.log(response.body);
+        setApiResponse(response?.body);
+        console.log(response?.body);
       } else {
         const response = result.failed[0].response;
-        console.log(`Error: ${response.body.err}`);
+        console.log(`Error: ${response?.body.err}`);
         setError(true);
       }
     });

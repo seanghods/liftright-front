@@ -4,14 +4,10 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+//firebase api key is a public identifier not a secret key...
 const firebaseConfig = {
   apiKey: "AIzaSyAJWwI1aib70HQliTbrBO08Qs4ybXKWZC8",
   authDomain: "liftright-1e46c.firebaseapp.com",
@@ -22,7 +18,6 @@ const firebaseConfig = {
   measurementId: "G-LMND9Y8YS7",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
