@@ -41,7 +41,10 @@ export const VideoUploader: React.FC = () => {
     });
 
     uppyInstance.use(XHRUpload, {
-      endpoint: "http://localhost:3001/upload",
+      endpoint:
+        import.meta.env.MODE === "production"
+          ? "https://api.liftrightai.com/api/response"
+          : "http://localhost:3001/api/response",
       fieldName: "video",
     });
 

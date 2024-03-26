@@ -1,5 +1,5 @@
 import { Button } from "react-daisyui";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import landingVid from "../assets/landing/landing-vid3.mov";
 import React from "react";
 
@@ -27,8 +27,12 @@ export const Hero: React.FC = () => {
               and LiftRight will analyze it directly and return improvements.
             </p>
             <div className="mt-16 inline-flex gap-3">
-              <Button color="primary">Get Started</Button>
-              <Button color="ghost">Learn More</Button>
+              <Link to="/register" style={{ textDecoration: "none" }}>
+                <Button color="primary">Get Started</Button>
+              </Link>
+              <a href="#sample" style={{ textDecoration: "none" }}>
+                <Button color="ghost">Learn More</Button>
+              </a>
               <Button onClick={() => navigate("/upload")} color="ghost">
                 Upload
               </Button>

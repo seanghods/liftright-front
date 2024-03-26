@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
                   <div>
                     <a
                       className="text-base transition-all duration-500 hover:text-primary"
-                      href="#"
+                      href="/"
                     >
                       Landing
                     </a>
@@ -38,17 +38,9 @@ export const Footer: React.FC = () => {
                   <div>
                     <a
                       className="text-base transition-all duration-500 hover:text-primary"
-                      href="#"
+                      href="/#faq"
                     >
                       FAQs
-                    </a>
-                  </div>
-                  <div>
-                    <a
-                      className="text-base transition-all duration-500 hover:text-primary"
-                      href="#"
-                    >
-                      Contact
                     </a>
                   </div>
                 </div>
@@ -59,7 +51,15 @@ export const Footer: React.FC = () => {
                   <div>
                     <a
                       className="text-base transition-all duration-500 hover:text-primary"
-                      href="#"
+                      href="/#sample"
+                    >
+                      Sample
+                    </a>
+                  </div>
+                  <div>
+                    <a
+                      className="text-base transition-all duration-500 hover:text-primary"
+                      href="/#features"
                     >
                       Features
                     </a>
@@ -67,17 +67,9 @@ export const Footer: React.FC = () => {
                   <div>
                     <a
                       className="text-base transition-all duration-500 hover:text-primary"
-                      href="#"
+                      href="/#pricing"
                     >
                       Pricing
-                    </a>
-                  </div>
-                  <div>
-                    <a
-                      className="text-base transition-all duration-500 hover:text-primary"
-                      href="#"
-                    >
-                      Products
                     </a>
                   </div>
                 </div>

@@ -1,15 +1,12 @@
 import { Theme, useTheme } from "react-daisyui";
-import Landing from "./containers/Landing.tsx";
 import { Route, Routes } from "react-router-dom";
-import { Topbar } from "./components/Topbar.tsx";
-import { Footer } from "./components/Footer.tsx";
-import { ThemeToggler } from "./components/ThemeToggler.tsx";
-import Upload from "./containers/Upload.tsx";
-import { ScrollToTop } from "./utils/helpers.ts";
-import Response from "./containers/Response.tsx";
+import { Topbar, Footer } from "@/components";
+// import { ThemeToggler } from "./components/ThemeToggler.tsx";
+import { ScrollToTop } from "@/utils/helpers.ts";
+import { Landing, Upload, Response, Register, Login } from "@/containers";
 
 function App() {
-  const { theme } = useTheme();
+  // const { theme } = useTheme();
 
   return (
     <>
@@ -20,6 +17,8 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/upload" element={<Upload />} />
           <Route path="/response/:id" element={<Response />} />
+          <Route path="/log-in" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
         <Footer />
         {/* <ThemeToggler /> */}

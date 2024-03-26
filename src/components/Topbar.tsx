@@ -1,6 +1,7 @@
 import { Button, Drawer, Menu, Navbar } from "react-daisyui";
 import { Menu as MenuIcon } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Topbar: React.FC = () => {
   const [drawerOpened, setDrawerOpened] = useState(false);
@@ -61,7 +62,7 @@ export const Topbar: React.FC = () => {
                         <a href="/#faq">FAQ</a>
                       </Menu.Item>
                       <Menu.Item className="font-medium">
-                        <a href="/upload">Upload</a>
+                        <Link to="/upload">Upload</Link>
                       </Menu.Item>
                     </Menu>
                   }
@@ -102,18 +103,22 @@ export const Topbar: React.FC = () => {
                   <a href="/#faq">FAQ</a>
                 </Menu.Item>
                 <Menu.Item className="font-medium">
-                  <a href="/upload">Upload</a>
+                  <Link to="/upload">Upload</Link>
                 </Menu.Item>
               </Menu>
             </Navbar.Center>
 
             <Navbar.End className="gap-3">
-              <Button size="sm" color="ghost">
-                Register
-              </Button>
-              <Button size="sm" color="primary">
-                Login
-              </Button>
+              <Link to="/register" style={{ textDecoration: "none" }}>
+                <Button size="sm" color="ghost">
+                  Register
+                </Button>
+              </Link>
+              <Link to="/log-in" style={{ textDecoration: "none" }}>
+                <Button size="sm" color="primary">
+                  Login
+                </Button>
+              </Link>
             </Navbar.End>
           </Navbar>
         </div>

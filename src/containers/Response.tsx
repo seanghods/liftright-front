@@ -2,12 +2,18 @@ import { API_ROUTES } from "@/utils/constants";
 import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import DOMPurify from "dompurify";
+import FeedbackForm from "@/components/sub-components/FeedbackForm";
+import Lottie from "react-lottie";
+import lottieCheckmark from "@/assets/animations/lottie-checkmark.json";
 
 const Response: React.FC = () => {
   const { id } = useParams();
   const location = useLocation();
   const apiResponseFromState = location.state?.apiResponse;
   const [apiResponse, setApiResponse] = useState(apiResponseFromState);
+  const [feedbackSubmitted, setFeedbackSubmitted] = useState<boolean>(
+    apiResponse?.feedback ? true : false
+  );
   useEffect(() => {
     if (!apiResponseFromState && id) {
       const fetchApiResponse = async () => {
@@ -17,6 +23,7 @@ const Response: React.FC = () => {
           });
           const data = await response.json();
           setApiResponse(data);
+          data.feedback && setFeedbackSubmitted(true);
         } catch (error) {
           console.error("Failed to fetch apiResponse:", error);
           // Handle the error appropriately
@@ -88,6 +95,28 @@ const Response: React.FC = () => {
         <div className="md:w-4/5 xl:w-2/3 flex flex-col gap-4 p-4 mb-10 md:p-12Z">
           {finalMessage}
         </div>
+        {feedbackSubmitted ? (
+          <div>
+            <p className="font-bold text-center text-base">
+              Thank you for submitting your feedback!
+            </p>
+            <Lottie
+              style={{ cursor: "default" }}
+              options={{
+                loop: false,
+                autoplay: true,
+                animationData: lottieCheckmark,
+                rendererSettings: {
+                  preserveAspectRatio: "xMidYMid slice",
+                },
+              }}
+              height={150}
+              width={150}
+            />
+          </div>
+        ) : (
+          <FeedbackForm setFeedbackSubmitted={setFeedbackSubmitted} />
+        )}
       </div>
     </>
   );

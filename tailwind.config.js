@@ -9,6 +9,12 @@ export default {
     "node_modules/react-daisyui/dist/**/*.js",
   ],
   theme: {
+    extend: {
+      backgroundImage: {
+        "gym-bg": "url('./assets/auth-bg/gym-bg2.jpeg')",
+        "gym-bg2": "url('./assets/auth-bg/gym-bg3.jpeg')",
+      },
+    },
     container: {
       center: true,
       padding: {
