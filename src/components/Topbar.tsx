@@ -49,6 +49,9 @@ export const Topbar: React.FC = () => {
                         <a href="/#home">Home</a>
                       </Menu.Item>
                       <Menu.Item className="font-medium">
+                        <a href="/#sample">Sample</a>
+                      </Menu.Item>
+                      <Menu.Item className="font-medium">
                         <a href="/#features">Features</a>
                       </Menu.Item>
                       <Menu.Item className="font-medium">
@@ -85,6 +88,9 @@ export const Topbar: React.FC = () => {
               <Menu horizontal size="sm" className="gap-2 px-1">
                 <Menu.Item className="font-medium">
                   <a href="/#home">Home</a>
+                </Menu.Item>
+                <Menu.Item className="font-medium">
+                  <a href="/#sample">Sample</a>
                 </Menu.Item>
                 <Menu.Item className="font-medium">
                   <a href="/#features">Features</a>

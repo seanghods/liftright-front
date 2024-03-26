@@ -6,3 +6,4 @@ export { Pricing as Pricing } from "./Pricing";
 export { ThemeToggler as ThemeToggler } from "./ThemeToggler";
 export { Topbar as Topbar } from "./Topbar";
 export { VideoUploader as VideoUploader } from "./VideoUploader";
+export { Sample as Sample } from "./Sample";

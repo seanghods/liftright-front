@@ -57,7 +57,7 @@ export const VideoUploader: React.FC = () => {
           maxWidth: 400,
           maxHeight: 400,
         });
-        thumbnails.on("capture", function (image) {
+        thumbnails.on("capture", function (image: any) {
           uppy.setFileState(file.id, { preview: image });
         });
         try {

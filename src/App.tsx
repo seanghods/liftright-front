@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/upload" element={<Upload />} />
-          <Route path="/response/:path" element={<Response />} />
+          <Route path="/response/:id" element={<Response />} />
         </Routes>
         <Footer />
         {/* <ThemeToggler /> */}

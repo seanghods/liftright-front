@@ -62,7 +62,7 @@ const LoadingAnalysis: React.FC<LoadingAnalysisProps> = ({
     };
   }, [finalizeAnimation]);
   useEffect(() => {
-    if (progress == 100 && apiResponse?.message)
+    if (progress >= 100 && apiResponse?.message)
       setTimeout(
         () =>
           navigate(`/response/${apiResponse.id}`, {

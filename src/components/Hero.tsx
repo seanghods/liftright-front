@@ -19,6 +19,9 @@ export const Hero: React.FC = () => {
               Hiring a personal trainer is hard. And expensive.{" "}
             </p>
             <p className=" mt-8 text-lg">
+              Get instant feedback on your form within seconds.{" "}
+            </p>
+            <p className=" mt-8 text-lg">
               Utilize our state-of-the-art Vision AI & GPTs to analyze your
               weightlifting form and offer feedback and advice. Upload a video
               and LiftRight will analyze it directly and return improvements.

@@ -8,26 +8,26 @@ const Response: React.FC = () => {
   const location = useLocation();
   const apiResponseFromState = location.state?.apiResponse;
   const [apiResponse, setApiResponse] = useState(apiResponseFromState);
-  // useEffect(() => {
-  //   if (!apiResponseFromState && id) {
-  //     const fetchApiResponse = async () => {
-  //       try {
-  //         const response = await fetch(API_ROUTES.response, {
-  //           credentials: "include",
-  //         });
-  //         const data = await response.json();
-  //         setApiResponse(data);
-  //       } catch (error) {
-  //         console.error("Failed to fetch apiResponse:", error);
-  //         // Handle the error appropriately
-  //       }
-  //     };
+  useEffect(() => {
+    if (!apiResponseFromState && id) {
+      const fetchApiResponse = async () => {
+        try {
+          const response = await fetch(`${API_ROUTES.response}?id=${id}`, {
+            credentials: "include",
+          });
+          const data = await response.json();
+          setApiResponse(data);
+        } catch (error) {
+          console.error("Failed to fetch apiResponse:", error);
+          // Handle the error appropriately
+        }
+      };
 
-  //     fetchApiResponse();
-  //   }
-  // }, [apiResponseFromState, id]);
+      fetchApiResponse();
+    }
+  }, [apiResponseFromState, id]);
 
-  useEffect(() => console.log(apiResponse), []);
+  useEffect(() => console.log(apiResponse), [apiResponse]);
   function renderFormattedText(text: string) {
     const withStrongTags = text.replace(
       /\*\*(.*?)\*\*/g,
@@ -36,7 +36,7 @@ const Response: React.FC = () => {
     const sanitizedHtml = DOMPurify.sanitize(withStrongTags);
     return <div dangerouslySetInnerHTML={{ __html: sanitizedHtml }} />;
   }
-  const final = apiResponse.message ? apiResponse.message.split("\n") : null;
+  const final = apiResponse ? apiResponse.message.split("\n") : null;
   const finalMessage =
     final &&
     final.map((line: string, index: number) => {
@@ -56,9 +56,15 @@ const Response: React.FC = () => {
         </div>
       );
     });
+  useEffect(() => {
+    if (apiResponse?.s3Link) {
+      const videoElement = document.querySelector("video");
+      videoElement?.load();
+    }
+  }, [apiResponse?.s3Link]);
   return (
     <>
-      <div className="container flex flex-col items-center gap-16">
+      <div className="container flex flex-col items-center gap-8">
         <h1
           data-aos="fade-down"
           className="text-2xl font-black tracking-tighter lg:text-4xl lg:leading-none text-center mt-12"
@@ -79,7 +85,7 @@ const Response: React.FC = () => {
             Your browser does not support the video tag.
           </video>
         </div>
-        <div className="w-2/3 flex flex-col gap-4 p-4 mb-10 md:p-12Z">
+        <div className="md:w-4/5 xl:w-2/3 flex flex-col gap-4 p-4 mb-10 md:p-12Z">
           {finalMessage}
         </div>
       </div>
