@@ -3,3 +3,7 @@ export { default as Upload } from "./Upload";
 export { default as Response } from "./Response";
 export { default as Login } from "./Login";
 export { default as Register } from "./Register";
+export { default as ContactUs } from "./ContactUs";
+export { default as TermsOfService } from "./TermsOfService";
+export { default as PrivacyPolicy } from "./PrivacyPolicy";
+export { default as NotFound } from "./NotFound";

@@ -7,6 +7,9 @@ import Lottie from "react-lottie";
 import lottieCheckmark from "@/assets/animations/lottie-checkmark.json";
 
 const Response: React.FC = () => {
+  useEffect(() => {
+    document.title = "LiftRight - Response";
+  }, []);
   const { id } = useParams();
   const location = useLocation();
   const apiResponseFromState = location.state?.apiResponse;

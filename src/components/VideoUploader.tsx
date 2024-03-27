@@ -6,6 +6,7 @@ import { Dashboard } from "@uppy/react/";
 import XHRUpload from "@uppy/xhr-upload";
 import { LoadingIcon, Xmark } from "./sub-components/Icons";
 import LoadingAnalysis from "./sub-components/LoadingAnalysis";
+import { useUser } from "@/UserContext";
 
 export type ApiResponse = {
   message: string | null;
@@ -14,6 +15,7 @@ export type ApiResponse = {
 };
 
 export const VideoUploader: React.FC = () => {
+  const { user } = useUser();
   const [uploadReady, setUploadReady] = useState<boolean>(false);
   const [awaitingResponse, setAwaitingResponse] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
@@ -22,13 +24,6 @@ export const VideoUploader: React.FC = () => {
     s3Link: null,
     id: null,
   });
-  // useEffect(() => {
-  //   setTimeout(
-  //     () => setApiResponse({ message: "hi", s3: null, id: "5341ea" }),
-  //     3000
-  //   );
-  // }, []);
-  useEffect(() => console.log(apiResponse), [apiResponse]);
   const uppy = useMemo(() => {
     const uppyInstance = new Uppy({
       meta: { type: "video" },
@@ -82,7 +77,6 @@ export const VideoUploader: React.FC = () => {
       if (result.successful.length > 0) {
         const response = result.successful[0].response;
         setApiResponse(response?.body);
-        console.log(response?.body);
       } else {
         const response = result.failed[0].response;
         console.log(`Error: ${response?.body.err}`);
@@ -97,12 +91,14 @@ export const VideoUploader: React.FC = () => {
         <LoadingAnalysis apiResponse={apiResponse} error={error} />
       ) : (
         <>
-          <div data-aos="fade-up" className="w-full flex justify-center my-12">
+          <div data-aos="fade-up" className="w-full flex justify-center my-8">
             <Dashboard
               hideUploadButton={true}
-              width="250"
+              height="450px"
+              width="600px"
               theme="dark"
               uppy={uppy}
+              disabled={!user}
               note="Upload one video."
             />
           </div>

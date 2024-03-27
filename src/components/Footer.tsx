@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Input } from "react-daisyui";
+import { Link } from "react-router-dom";
 
 export const Footer: React.FC = () => {
   return (
@@ -9,39 +10,39 @@ export const Footer: React.FC = () => {
           <div className="md-12  p-8 sm:p-10 md:px-16 xl:px-40 xl:py-16">
             <div className="grid grid-cols-2 gap-6 md:grid-cols-3">
               <div className="flex flex-col gap-5">
-                <h2 className="text-xl font-medium">Company</h2>
+                <h2 className="text-xl font-medium">LiftRight</h2>
                 <div className="space-y-2">
                   <div>
-                    <a
+                    <Link
                       className="text-base transition-all duration-500 hover:text-primary"
-                      href="/"
+                      to="/"
                     >
                       Landing
-                    </a>
+                    </Link>
                   </div>
                   <div>
-                    <a
+                    <Link
                       className="text-base transition-all duration-500 hover:text-primary"
-                      href="#"
+                      to="#"
                     >
                       Our Team
-                    </a>
+                    </Link>
                   </div>
                   <div>
-                    <a
+                    <Link
                       className="text-base transition-all duration-500 hover:text-primary"
-                      href="#"
+                      to="#"
                     >
                       Blogs
-                    </a>
+                    </Link>
                   </div>
                   <div>
-                    <a
+                    <Link
                       className="text-base transition-all duration-500 hover:text-primary"
-                      href="/#faq"
+                      to="/#faq"
                     >
                       FAQs
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -49,28 +50,28 @@ export const Footer: React.FC = () => {
                 <h2 className="text-xl font-medium">Quick Links</h2>
                 <div className="space-y-2">
                   <div>
-                    <a
+                    <Link
                       className="text-base transition-all duration-500 hover:text-primary"
-                      href="/#sample"
+                      to="/#sample"
                     >
                       Sample
-                    </a>
+                    </Link>
                   </div>
                   <div>
-                    <a
+                    <Link
                       className="text-base transition-all duration-500 hover:text-primary"
-                      href="/#features"
+                      to="/#features"
                     >
                       Features
-                    </a>
+                    </Link>
                   </div>
                   <div>
-                    <a
+                    <Link
                       className="text-base transition-all duration-500 hover:text-primary"
-                      href="/#pricing"
+                      to="/#pricing"
                     >
                       Pricing
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -78,36 +79,36 @@ export const Footer: React.FC = () => {
                 <h2 className="text-xl font-medium">Connecting</h2>
                 <div className="space-y-2">
                   <div>
-                    <a
+                    <Link
                       className="text-base transition-all duration-500 hover:text-primary"
-                      href="#"
+                      to="/contact-us"
                     >
                       Contact Us
-                    </a>
+                    </Link>
                   </div>
                   <div>
-                    <a
+                    <Link
                       className="text-base transition-all duration-500 hover:text-primary"
-                      href="#"
+                      to="/contact-us"
                     >
                       Support
-                    </a>
+                    </Link>
                   </div>
                   <div>
-                    <a
+                    <Link
                       className="text-base transition-all duration-500 hover:text-primary"
-                      href="#"
+                      to="/privacy-policy"
                     >
                       Privacy Policy
-                    </a>
+                    </Link>
                   </div>
                   <div>
-                    <a
+                    <Link
                       className="text-base transition-all duration-500 hover:text-primary"
-                      href="#"
+                      to="/terms-of-service"
                     >
-                      Terms & Conditions
-                    </a>
+                      Terms of Service
+                    </Link>
                   </div>
                 </div>
               </div>

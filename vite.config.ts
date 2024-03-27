@@ -15,4 +15,7 @@ export default defineConfig({
       "@": path.resolve(path.resolve(), "src"),
     },
   },
+  optimizeDeps: {
+    exclude: ["posthog-js"],
+  },
 });

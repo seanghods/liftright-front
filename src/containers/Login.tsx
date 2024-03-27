@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Login: React.FC = () => {
+  useEffect(() => {
+    document.title = "LiftRight - Login";
+  }, []);
   return (
     <>
-      <div className="relative">
-        <div className="bg-no-repeat bg-cover bg-center bg-gym-bg py-36 sm:flex sm:flex-row mx-0 justify-center">
-          <div className="flex-col flex  self-center p-10 sm:max-w-5xl xl:max-w-2xl">
+      <div className="relative flex-1 flex flex-col">
+        <div className="flex-1 md:min-h-[800px] bg-no-repeat bg-cover bg-center bg-gym-bg py-24 md:py-36 flex flex-row mx-0 justify-center">
+          <div className="hidden sm:flex flex-col self-center p-10 sm:max-w-5xl xl:max-w-2xl">
             <div
               data-aos="fade-right"
               className="self-start hidden lg:flex flex-col  text-white"
             >
-              <img src="" className="mb-3" />
               <h1 className="mb-3 font-bold text-5xl">Welcome back.</h1>
               <p className="pr-3">
                 Let's look at your form and see what you're doing well at and
@@ -22,10 +24,10 @@ const Login: React.FC = () => {
           <div className="flex justify-center self-center">
             <div
               data-aos="fade-left"
-              className="p-12 bg-primary-content mx-auto rounded-2xl w-100 "
+              className="p-8 bg-primary-content mx-auto rounded-2xl w-[350px]"
             >
               <div className="mb-4">
-                <h3 className="font-semibold text-2xl text-gray-800">
+                <h3 className="font-semibold text-xl text-gray-800">
                   Sign In{" "}
                 </h3>
                 <p className="text-gray-500">Please sign in to your account.</p>
@@ -35,9 +37,8 @@ const Login: React.FC = () => {
                   <label className="text-sm font-medium text-gray-700 tracking-wide">
                     Email
                   </label>
-
                   <input
-                    className="input w-full text-base rounded-lg focus:outline-none"
+                    className="p-3 bg-black w-full text-sm rounded-lg focus:outline-none"
                     type="text"
                     placeholder="mail@gmail.com"
                   />
@@ -47,16 +48,16 @@ const Login: React.FC = () => {
                     Password
                   </label>
                   <input
-                    className="input w-full text-base rounded-lg focus:outline-none"
+                    className="p-3 bg-black w-full text-sm rounded-lg focus:outline-none"
                     type="password"
                     placeholder="Enter your password"
                   />
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="text-sm">
-                    <a href="#" className="text-primary">
+                    <Link to="/" className="text-primary hover:text-blue-400">
                       Forgot your password?
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div>

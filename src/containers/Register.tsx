@@ -1,17 +1,124 @@
-import React from "react";
+import { useUser } from "@/UserContext";
+import { API_ROUTES } from "@/utils/constants";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Register: React.FC = () => {
+  const { user, setUser } = useUser();
+  const [showPaymentForm, setShowPaymentForm] = useState<boolean>(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+    tos: false,
+  });
+  const [formError, setFormError] = useState({
+    email: "",
+    password: "",
+    tos: "",
+  });
+  useEffect(() => {
+    document.title = "LiftRight - Register";
+  }, []);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, type, checked, value } = e.target;
+    if (type === "checkbox") {
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: checked,
+      }));
+    } else {
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
+  };
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormError({
+      email: "",
+      password: "",
+      tos: "",
+    });
+    if (!formData.email.includes("@")) {
+      setFormError((prevState) => ({
+        ...prevState,
+        email: "Please enter a valid email address.",
+      }));
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      setFormError((prevState) => ({
+        ...prevState,
+        password: "Password must be greater than 6 characters.",
+      }));
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      setFormError((prevState) => ({
+        ...prevState,
+        password: "Passwords do not match.",
+      }));
+      return;
+    }
+
+    if (!formData.tos) {
+      setFormError((prevState) => ({
+        ...prevState,
+        tos: "Please check your agreement above.",
+      }));
+      return;
+    }
+
+    try {
+      const response = await fetch(API_ROUTES.users, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+          credits: 0,
+        }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        if (error.message) {
+          setFormError((prevState) => ({
+            ...prevState,
+            email: error.message,
+          }));
+          return;
+        } else {
+          throw new Error("Failed to register");
+        }
+      }
+      const data = await response.json();
+      setUser(data.user);
+      // Redirect or clear form here
+    } catch (error) {
+      console.error("Registration failed:", error);
+      setFormError((prevState) => ({
+        ...prevState,
+        email: "Registration failed. Please try again.",
+      }));
+    }
+  };
+
   return (
     <>
-      <div className="relative">
-        <div className="bg-no-repeat bg-cover bg-center bg-gym-bg2 py-36 sm:flex sm:flex-row mx-0 justify-center">
-          <div className="flex-col flex  self-center p-10 sm:max-w-5xl xl:max-w-2xl">
+      <div className="relative flex-1 flex flex-col">
+        <div className="flex-1 bg-no-repeat bg-cover bg-center bg-gym-bg2 py-24 md:py-24 flex flex-row mx-0 justify-center">
+          <div className="hidden sm:flex flex-col self-center p-10 sm:max-w-5xl xl:max-w-2xl">
             <div
               data-aos="fade-right"
               className="self-start hidden lg:flex flex-col  text-white"
             >
-              <img src="" className="mb-3" />
               <h1 className="mb-3 font-bold text-5xl">Welcome.</h1>
               <p className="pr-3">
                 Try LiftRight AI to see improvements you can make in your
@@ -22,70 +129,107 @@ const Register: React.FC = () => {
           <div className="flex justify-center self-center w-[375px]">
             <div
               data-aos="fade-left"
-              className="p-12 bg-primary-content mx-auto rounded-2xl w-100 "
+              className="p-8 bg-primary-content mx-auto rounded-2xl w-100"
             >
               <div className="mb-4">
-                <h3 className="font-semibold text-2xl text-gray-800">
+                <h3 className="font-semibold text-xl text-gray-800">
                   Register{" "}
                 </h3>
-                <p className="text-gray-500">
+                <p className="text-gray-500 text-base">
                   Please register for a new account.
                 </p>
               </div>
-              <div className="space-y-5">
-                <div className="space-y-2">
+              <form method="post" onSubmit={handleSubmit} className="space-y-4">
+                <div className="space-y-1">
                   <label className="text-sm font-medium text-gray-700 tracking-wide">
                     Email
                   </label>
 
                   <input
-                    className="input w-full text-base rounded-lg focus:outline-none"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="p-3 bg-black w-full text-sm rounded-lg focus:outline-none"
                     type="text"
                     placeholder="mail@gmail.com"
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1">
                   <label className="mb-5 text-sm font-medium text-gray-700 tracking-wide">
                     Password
                   </label>
                   <input
-                    className="input w-full text-base rounded-lg focus:outline-none"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    className="p-3 bg-black w-full text-sm rounded-lg focus:outline-none"
                     type="password"
                     placeholder="Enter your password"
                   />
                 </div>
+                <div className="space-y-1">
+                  <label className="mb-5 text-sm font-medium text-gray-700 tracking-wide">
+                    Confirm Password
+                  </label>
+                  <input
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleInputChange}
+                    className="p-3 bg-black w-full text-sm rounded-lg focus:outline-none"
+                    type="password"
+                    placeholder="Confirm password"
+                  />
+                </div>
                 <div className="flex items-center justify-between">
                   <div className="text-sm">
-                    <a href="#" className="text-primary">
+                    <Link to="/" className="text-primary hover:text-blue-400">
                       Forgot your password?
-                    </a>
+                    </Link>
                   </div>
                 </div>
-                <div className="text-sm text-gray-700">
-                  By registering I agree to the{" "}
-                  <Link
-                    to="/terms-of-service"
-                    className="text-blue-400 w-4/5 md:w-1/2"
-                  >
-                    Terms of Service
-                  </Link>{" "}
-                  and{" "}
-                  <Link
-                    to="/privacy-policy"
-                    className="text-blue-400 w-4/5 md:w-1/2 text-right"
-                  >
-                    Privacy Policy
-                  </Link>
+                <div className="flex gap-3 text-sm text-gray-700">
+                  <div className="mt-2">
+                    <input
+                      name="tos"
+                      type="checkbox"
+                      onChange={handleInputChange}
+                      checked={formData.tos}
+                      className="checkbox-primary h-[18px] w-[18px]"
+                    />
+                  </div>
+                  <div className="mt-2">
+                    By registering I agree to the{" "}
+                    <Link
+                      to="/terms-of-service"
+                      className="text-primary hover:text-blue-400 w-4/5 md:w-1/2"
+                    >
+                      Terms of Service
+                    </Link>{" "}
+                    and{" "}
+                    <Link
+                      to="/privacy-policy"
+                      className="text-primary hover:text-blue-400 w-4/5 md:w-1/2 text-right"
+                    >
+                      Privacy Policy
+                    </Link>
+                  </div>
+                </div>
+                <div className="h-[15px] mt-2 text-sm">
+                  <div className="text-error font-bold">{formError.email}</div>
+                  <div className="text-error font-bold">
+                    {formError.password}
+                  </div>
+                  <div className="text-error font-bold">{formError.tos}</div>
                 </div>
                 <div>
                   <button
                     type="submit"
                     className="btn btn-primary w-full flex justify-center rounded-full tracking-wide shadow-lg"
                   >
-                    Sign in
+                    Register
                   </button>
                 </div>
-              </div>
+              </form>
               <div className="mt-3">
                 <Link
                   to="/log-in"
