@@ -1,11 +1,12 @@
 import { useUser } from "@/UserContext";
+import PaymentForm from "@/components/sub-components/PaymentForm";
 import { API_ROUTES } from "@/utils/constants";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Register: React.FC = () => {
   const { user, setUser } = useUser();
-  const [showPaymentForm, setShowPaymentForm] = useState<boolean>(false);
+  const [showPaymentForm, setShowPaymentForm] = useState<boolean>(true);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -74,7 +75,7 @@ const Register: React.FC = () => {
     }
 
     try {
-      const response = await fetch(API_ROUTES.users, {
+      const response = await fetch(API_ROUTES.register, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -100,7 +101,7 @@ const Register: React.FC = () => {
       }
       const data = await response.json();
       setUser(data.user);
-      // Redirect or clear form here
+      setShowPaymentForm(true);
     } catch (error) {
       console.error("Registration failed:", error);
       setFormError((prevState) => ({
@@ -113,7 +114,11 @@ const Register: React.FC = () => {
   return (
     <>
       <div className="relative flex-1 flex flex-col">
-        <div className="flex-1 bg-no-repeat bg-cover bg-center bg-gym-bg2 py-24 md:py-24 flex flex-row mx-0 justify-center">
+        <div
+          className={`flex-1 bg-no-repeat bg-cover bg-center bg-gym-bg2 py-24 ${
+            showPaymentForm ? "md:py-48" : "md:py-24"
+          } flex flex-row mx-0 justify-center`}
+        >
           <div className="hidden sm:flex flex-col self-center p-10 sm:max-w-5xl xl:max-w-2xl">
             <div
               data-aos="fade-right"
@@ -135,114 +140,133 @@ const Register: React.FC = () => {
                 <h3 className="font-semibold text-xl text-gray-800">
                   Register{" "}
                 </h3>
-                <p className="text-gray-500 text-base">
-                  Please register for a new account.
+                <p className="text-gray-500 text-sm">
+                  {showPaymentForm
+                    ? "Purchase Credits to use LiftRight."
+                    : "Please register for a new account."}
                 </p>
               </div>
-              <form method="post" onSubmit={handleSubmit} className="space-y-4">
-                <div className="space-y-1">
-                  <label className="text-sm font-medium text-gray-700 tracking-wide">
-                    Email
-                  </label>
-
-                  <input
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="p-3 bg-black w-full text-sm rounded-lg focus:outline-none"
-                    type="text"
-                    placeholder="mail@gmail.com"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <label className="mb-5 text-sm font-medium text-gray-700 tracking-wide">
-                    Password
-                  </label>
-                  <input
-                    name="password"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    className="p-3 bg-black w-full text-sm rounded-lg focus:outline-none"
-                    type="password"
-                    placeholder="Enter your password"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <label className="mb-5 text-sm font-medium text-gray-700 tracking-wide">
-                    Confirm Password
-                  </label>
-                  <input
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleInputChange}
-                    className="p-3 bg-black w-full text-sm rounded-lg focus:outline-none"
-                    type="password"
-                    placeholder="Confirm password"
-                  />
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="text-sm">
-                    <Link to="/" className="text-primary hover:text-blue-400">
-                      Forgot your password?
-                    </Link>
-                  </div>
-                </div>
-                <div className="flex gap-3 text-sm text-gray-700">
-                  <div className="mt-2">
-                    <input
-                      name="tos"
-                      type="checkbox"
-                      onChange={handleInputChange}
-                      checked={formData.tos}
-                      className="checkbox-primary h-[18px] w-[18px]"
-                    />
-                  </div>
-                  <div className="mt-2">
-                    By registering I agree to the{" "}
-                    <Link
-                      to="/terms-of-service"
-                      className="text-primary hover:text-blue-400 w-4/5 md:w-1/2"
-                    >
-                      Terms of Service
-                    </Link>{" "}
-                    and{" "}
-                    <Link
-                      to="/privacy-policy"
-                      className="text-primary hover:text-blue-400 w-4/5 md:w-1/2 text-right"
-                    >
-                      Privacy Policy
-                    </Link>
-                  </div>
-                </div>
-                <div className="h-[15px] mt-2 text-sm">
-                  <div className="text-error font-bold">{formError.email}</div>
-                  <div className="text-error font-bold">
-                    {formError.password}
-                  </div>
-                  <div className="text-error font-bold">{formError.tos}</div>
-                </div>
-                <div>
-                  <button
-                    type="submit"
-                    className="btn btn-primary w-full flex justify-center rounded-full tracking-wide shadow-lg"
+              {showPaymentForm ? (
+                <PaymentForm />
+              ) : (
+                <>
+                  <form
+                    method="post"
+                    onSubmit={handleSubmit}
+                    className="space-y-4"
                   >
-                    Register
-                  </button>
-                </div>
-              </form>
-              <div className="mt-3">
-                <Link
-                  to="/log-in"
-                  className="text-blue-500 hover:text-blue-400 text-sm"
-                >
-                  Already have an account? Log in
-                </Link>
-              </div>
-              <div className="pt-5 text-center text-gray-400 text-xs">
-                Your privacy and security are important to us. We use
-                industry-standard security measures to protect your personal
-                information, including secure handling of passwords.
-              </div>
+                    <div className="space-y-1">
+                      <label className="text-sm font-medium text-gray-700 tracking-wide">
+                        Email
+                      </label>
+
+                      <input
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className="p-3 bg-black w-full text-sm rounded-lg focus:outline-none"
+                        type="text"
+                        placeholder="mail@gmail.com"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="mb-5 text-sm font-medium text-gray-700 tracking-wide">
+                        Password
+                      </label>
+                      <input
+                        name="password"
+                        value={formData.password}
+                        onChange={handleInputChange}
+                        className="p-3 bg-black w-full text-sm rounded-lg focus:outline-none"
+                        type="password"
+                        placeholder="Enter your password"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="mb-5 text-sm font-medium text-gray-700 tracking-wide">
+                        Confirm Password
+                      </label>
+                      <input
+                        name="confirmPassword"
+                        value={formData.confirmPassword}
+                        onChange={handleInputChange}
+                        className="p-3 bg-black w-full text-sm rounded-lg focus:outline-none"
+                        type="password"
+                        placeholder="Confirm password"
+                      />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="text-sm">
+                        <Link
+                          to="/"
+                          className="text-primary hover:text-blue-400"
+                        >
+                          Forgot your password?
+                        </Link>
+                      </div>
+                    </div>
+                    <div className="flex gap-3 text-sm text-gray-700">
+                      <div className="mt-2">
+                        <input
+                          name="tos"
+                          type="checkbox"
+                          onChange={handleInputChange}
+                          checked={formData.tos}
+                          className="checkbox-primary h-[18px] w-[18px]"
+                        />
+                      </div>
+                      <div className="mt-2">
+                        By registering I agree to the{" "}
+                        <Link
+                          to="/terms-of-service"
+                          className="text-primary hover:text-blue-400 w-4/5 md:w-1/2"
+                        >
+                          Terms of Service
+                        </Link>{" "}
+                        and{" "}
+                        <Link
+                          to="/privacy-policy"
+                          className="text-primary hover:text-blue-400 w-4/5 md:w-1/2 text-right"
+                        >
+                          Privacy Policy
+                        </Link>
+                      </div>
+                    </div>
+                    <div className="h-[15px] mt-2 text-sm">
+                      <div className="text-error font-bold">
+                        {formError.email}
+                      </div>
+                      <div className="text-error font-bold">
+                        {formError.password}
+                      </div>
+                      <div className="text-error font-bold">
+                        {formError.tos}
+                      </div>
+                    </div>
+                    <div>
+                      <button
+                        type="submit"
+                        className="btn btn-primary w-full flex justify-center rounded-full tracking-wide shadow-lg"
+                      >
+                        Register
+                      </button>
+                    </div>
+                  </form>
+                  <div className="mt-3">
+                    <Link
+                      to="/log-in"
+                      className="text-blue-500 hover:text-blue-400 text-sm"
+                    >
+                      Already have an account? Log in
+                    </Link>
+                  </div>
+                  <div className="pt-5 text-center text-gray-400 text-xs">
+                    Your privacy and security are important to us. We use
+                    industry-standard security measures to protect your personal
+                    information, including secure handling of passwords.
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>

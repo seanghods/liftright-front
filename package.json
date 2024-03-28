@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@stripe/stripe-js": "^3.1.0",
     "@types/aos": "^3.0.7",
     "@types/dompurify": "^3.0.5",
     "@types/react-lottie": "^1.2.10",

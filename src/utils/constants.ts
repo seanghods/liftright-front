@@ -8,6 +8,8 @@ export const API_ROUTES = {
   response: `${BASE_URL}/response`,
   feedback: `${BASE_URL}/feedback`,
   contactUs: `${BASE_URL}/contact-us`,
-  users: `${BASE_URL}/users`,
+  register: `${BASE_URL}/register`,
+  logIn: `${BASE_URL}/log-in`,
   checkSession: `${BASE_URL}/check-session`,
+  createCheckoutSession: `${BASE_URL}/create-checkout-session`,
 };
