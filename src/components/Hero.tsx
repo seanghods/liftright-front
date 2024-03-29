@@ -18,15 +18,29 @@ export const Hero: React.FC = () => {
             <p className=" mt-8 text-lg">
               Hiring a personal trainer is hard. And expensive.{" "}
             </p>
-            <p className=" mt-8 text-lg">
+            <p className="mt-8 text-lg">
               Get instant feedback on your form within seconds.{" "}
             </p>
+            <div className="flex flex-col justify-center my-8 mx-2 md:hidden">
+              <video
+                width="100%"
+                height="auto"
+                autoPlay={true}
+                className="rounded-lg"
+                muted
+                loop
+              >
+                <source src={landingVid} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
             <p className=" mt-8 text-lg">
               Utilize our state-of-the-art Vision AI & GPTs to analyze your
-              weightlifting form and offer feedback and advice. Upload a video
-              and LiftRight will analyze it directly and return improvements.
+              weightlifting form and offer real feedback in seconds. Upload a
+              video and LiftRight will analyze it directly and return
+              improvements.
             </p>
-            <div className="mt-16 inline-flex gap-3">
+            <div className="mt-8 md:mt-16 inline-flex gap-3">
               <Link to="/register" style={{ textDecoration: "none" }}>
                 <Button color="primary">Get Started</Button>
               </Link>
@@ -42,7 +56,7 @@ export const Hero: React.FC = () => {
           <div>
             <div
               data-aos="fade-left"
-              className="h-full flex flex-col justify-center"
+              className="hidden md:flex h-full flex-col justify-center"
             >
               {/* <div className="rounded-2xl bg-gradient-to-r from-blue-900 via-sky-400 to-indigo-900 p-2"> */}
               <video
@@ -56,8 +70,8 @@ export const Hero: React.FC = () => {
                 <source src={landingVid} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
+              {/* </div> */}
             </div>
-            {/* </div> */}
           </div>
         </div>
 
