@@ -36,8 +36,6 @@ const Response: React.FC = () => {
       fetchApiResponse();
     }
   }, [apiResponseFromState, id]);
-
-  useEffect(() => console.log(apiResponse), [apiResponse]);
   function renderFormattedText(text: string) {
     const withStrongTags = text.replace(
       /\*\*(.*?)\*\*/g,

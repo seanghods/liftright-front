@@ -22,7 +22,7 @@ export const Topbar: React.FC = () => {
       setUser(null);
       navigate("/");
     } else {
-      console.log(data.message);
+      console.error(data.message);
     }
   }
 

@@ -24,9 +24,8 @@ import { API_ROUTES } from "./utils/constants";
 import { useUser } from "./UserContext";
 
 function App() {
-  const { user, setUser } = useUser();
+  const { setUser } = useUser();
   const [fullLoadingPage, setFullLoadingPage] = useState<boolean>(false);
-  useEffect(() => console.log(user), [user]);
   useEffect(() => {
     async function checkAuthenticationStatus() {
       setFullLoadingPage(true);
