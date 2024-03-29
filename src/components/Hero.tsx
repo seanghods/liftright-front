@@ -25,7 +25,7 @@ export const Hero: React.FC = () => {
               <video
                 width="100%"
                 height="auto"
-                autoPlay={true}
+                autoPlay
                 className="rounded-lg"
                 muted
                 loop
@@ -62,7 +62,7 @@ export const Hero: React.FC = () => {
               <video
                 width="100%"
                 height="auto"
-                autoPlay={true}
+                autoPlay
                 className="rounded-lg"
                 muted
                 loop
