@@ -24,7 +24,7 @@ export const Hero: React.FC = () => {
             <p className=" mt-8 md:text-lg">
               Hiring a personal trainer is{" "}
               <span className="text-red-200">hard</span>. And{" "}
-              <span className="text-yellow-100">expensive</span>.{" "}
+              <span className="text-red-200">expensive</span>.{" "}
             </p>
             <p className="mt-8 md:text-lg">
               Get <span className="text-blue-300">instant feedback</span> on
