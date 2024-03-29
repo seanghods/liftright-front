@@ -133,9 +133,9 @@ export const VideoUploader: React.FC = () => {
         <>
           <div data-aos="fade-up" className="w-full flex justify-center my-8">
             <Dashboard
+              className="w-[300px] md:w-[600px]"
               hideUploadButton={true}
               height="450px"
-              width="600px"
               theme="dark"
               uppy={uppy}
               disabled={!user || user.credits == 0 || !user.credits}
