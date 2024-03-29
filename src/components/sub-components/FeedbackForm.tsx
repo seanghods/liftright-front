@@ -29,6 +29,7 @@ const FeedbackForm: React.FC<Props> = ({ setFeedbackSubmitted }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ ...feedback, id }),
+        credentials: "include",
       });
       if (response.ok) {
         setFeedbackSubmitted(true);

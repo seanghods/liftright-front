@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Register: React.FC = () => {
   const { user, setUser } = useUser();
-  const [showPaymentForm, setShowPaymentForm] = useState<boolean>(true);
+  const [showPaymentForm, setShowPaymentForm] = useState<boolean>(false);
   useEffect(() => {
     setShowPaymentForm(!!user);
   }, [user]);

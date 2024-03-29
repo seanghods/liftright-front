@@ -1,5 +1,5 @@
 import { API_ROUTES } from "@/utils/constants";
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
 type PaymentProps = {
@@ -7,16 +7,22 @@ type PaymentProps = {
 };
 
 const PaymentForm: React.FC<PaymentProps> = ({ alternative }) => {
+  const [error, setError] = useState("");
   const params = useParams();
   const chosenPlan = params["*"];
   const createCheckoutSession = async (type: string) => {
     const response = await fetch(API_ROUTES.createCheckoutSession, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ type }),
     });
+    if (!response.ok) {
+      const err = await response.json();
+      setError(err.error);
+    }
     const { url } = await response.json();
     if (url) window.location.href = url;
   };
@@ -68,6 +74,15 @@ const PaymentForm: React.FC<PaymentProps> = ({ alternative }) => {
             </button>
           </div>
         </div>
+        {error && (
+          <div
+            className={`${
+              !alternative && "w-[200px]"
+            } text-error font-bold text-sm`}
+          >
+            {error}
+          </div>
+        )}
         <div
           className={`text-sm text-gray-500 ${
             !alternative && "w-[200px]"
