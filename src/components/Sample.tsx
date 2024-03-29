@@ -35,10 +35,11 @@ export const Sample: React.FC = () => {
               <video
                 width="100%"
                 height="auto"
-                autoPlay={true}
+                autoPlay
                 className="rounded-lg"
                 muted
                 loop
+                playsInline
               >
                 <source src={example} type="video/mp4" />
                 Your browser does not support the video tag.
