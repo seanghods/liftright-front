@@ -46,7 +46,9 @@ export const Sample: React.FC = () => {
             </div>
           </div>
           <div className="lg:mt-8">
-            <Badge color="primary">Examine</Badge>
+            <Badge className="hidden md:block" color="primary">
+              Examine
+            </Badge>
             <h3 className="my-2 text-3xl font-semibold">Analysis</h3>
             <Typewriter
               options={{ delay: 6, cursor: "#" }}
