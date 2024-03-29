@@ -10,3 +10,5 @@ export { default as NotFound } from "./NotFound";
 export { default as ListResponses } from "./ListResponses";
 export { default as Profile } from "./Profile";
 export { default as VerifyEmail } from "./VerifyEmail";
+export { default as ResetPassword } from "./ResetPassword";
+export { default as ForgotPassword } from "./ForgotPassword";

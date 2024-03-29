@@ -16,6 +16,8 @@ import {
   Profile,
   ListResponses,
   VerifyEmail,
+  ResetPassword,
+  ForgotPassword,
 } from "@/containers";
 import { useEffect, useState } from "react";
 import { API_ROUTES } from "./utils/constants";
@@ -70,6 +72,8 @@ function App() {
               <Route path="/terms-of-service" element={<TermsOfService />} />
               <Route path="/contact-us" element={<ContactUs />} />
               <Route path="/verify-email" element={<VerifyEmail />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>

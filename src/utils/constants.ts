@@ -14,4 +14,6 @@ export const API_ROUTES = {
   checkSession: `${BASE_URL}/check-session`,
   verifyEmail: `${BASE_URL}/verify-email`,
   createCheckoutSession: `${BASE_URL}/create-checkout-session`,
+  forgotPassword: `${BASE_URL}/forgot-password`,
+  resetPassword: `${BASE_URL}/reset-password`,
 };
