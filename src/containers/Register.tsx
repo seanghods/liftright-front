@@ -80,6 +80,7 @@ const Register: React.FC = () => {
     try {
       const response = await fetch(API_ROUTES.register, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

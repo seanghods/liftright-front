@@ -37,6 +37,7 @@ const Login: React.FC = () => {
     try {
       const response = await fetch(API_ROUTES.logIn, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
