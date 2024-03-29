@@ -7,3 +7,4 @@ export { ThemeToggler as ThemeToggler } from "./ThemeToggler";
 export { Topbar as Topbar } from "./Topbar";
 export { VideoUploader as VideoUploader } from "./VideoUploader";
 export { Sample as Sample } from "./Sample";
+export { FullLoadingPage as FullLoadingPage } from "./FullLoadingPage";

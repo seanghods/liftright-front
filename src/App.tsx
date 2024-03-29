@@ -1,6 +1,6 @@
 import { Theme } from "react-daisyui";
 import { Route, Routes } from "react-router-dom";
-import { Topbar, Footer } from "@/components";
+import { Topbar, Footer, FullLoadingPage } from "@/components";
 import posthog from "posthog-js";
 import { ScrollToTop } from "@/utils/helpers.ts";
 import {
@@ -54,6 +54,7 @@ function App() {
       <div className="flex flex-col min-h-screen">
         <ScrollToTop />
         <Theme className="flex-1 flex flex-col min-h-screen" dataTheme={"dark"}>
+          {fullLoadingPage && <FullLoadingPage />}
           <Topbar />
           <div className="flex-1 flex flex-col">
             <Routes>
@@ -70,7 +71,7 @@ function App() {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
-          <Footer />
+          {!fullLoadingPage && <Footer />}
         </Theme>
       </div>
     </>
