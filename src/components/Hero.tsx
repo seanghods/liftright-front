@@ -21,10 +21,10 @@ export const Hero: React.FC = () => {
               <span className="text-gradient"> LiftRight </span>
               AI.
             </h1>
-            <p className=" mt-8 text-lg">
+            <p className=" mt-8 md:text-lg">
               Hiring a personal trainer is hard. And expensive.{" "}
             </p>
-            <p className="mt-8 text-lg">
+            <p className="mt-8 md:text-lg">
               Get instant feedback on your form within seconds.{" "}
             </p>
             <div className="flex flex-col justify-center my-8 mx-2 md:hidden">
@@ -41,7 +41,7 @@ export const Hero: React.FC = () => {
                 Your browser does not support the video tag.
               </video>
             </div>
-            <p className=" mt-8 text-lg">
+            <p className=" mt-8 md:text-lg">
               Utilize our state-of-the-art Vision AI & GPTs to analyze your
               weightlifting form and offer real feedback in seconds. Upload a
               video and LiftRight will analyze it directly and return
