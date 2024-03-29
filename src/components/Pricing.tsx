@@ -1,5 +1,6 @@
 import React from "react";
 import { Badge, Button, Card } from "react-daisyui";
+import { Link } from "react-router-dom";
 
 export const Pricing: React.FC = () => {
   return (
@@ -33,14 +34,16 @@ export const Pricing: React.FC = () => {
                     </p>
                   </Card.Body>
                 </Card>
-                <Button
-                  variant="outline"
-                  color="primary"
-                  fullWidth
-                  className="mt-auto"
-                >
-                  Purchase
-                </Button>
+                <Link to="/register/1">
+                  <Button
+                    variant="outline"
+                    color="primary"
+                    fullWidth
+                    className="mt-auto"
+                  >
+                    Purchase
+                  </Button>
+                </Link>
               </Card.Body>
             </Card>
 
@@ -69,10 +72,11 @@ export const Pricing: React.FC = () => {
                     </p>
                   </Card.Body>
                 </Card>
-
-                <Button color="primary" fullWidth className="mt-auto">
-                  Purchase
-                </Button>
+                <Link to="/register/5">
+                  <Button color="primary" fullWidth className="mt-auto">
+                    Purchase
+                  </Button>
+                </Link>
               </Card.Body>
             </Card>
 
@@ -93,15 +97,16 @@ export const Pricing: React.FC = () => {
                     </p>
                   </Card.Body>
                 </Card>
-
-                <Button
-                  variant="outline"
-                  color="primary"
-                  fullWidth
-                  className="mt-auto"
-                >
-                  Purchase
-                </Button>
+                <Link to="/register/15">
+                  <Button
+                    variant="outline"
+                    color="primary"
+                    fullWidth
+                    className="mt-auto"
+                  >
+                    Purchase
+                  </Button>
+                </Link>
               </Card.Body>
             </Card>
           </div>

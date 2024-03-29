@@ -1,11 +1,14 @@
 import { API_ROUTES } from "@/utils/constants";
 import React from "react";
+import { useParams } from "react-router-dom";
 
 type PaymentProps = {
   alternative?: boolean;
 };
 
 const PaymentForm: React.FC<PaymentProps> = ({ alternative }) => {
+  const params = useParams();
+  const chosenPlan = params["*"];
   const createCheckoutSession = async (type: string) => {
     const response = await fetch(API_ROUTES.createCheckoutSession, {
       method: "POST",
@@ -20,7 +23,11 @@ const PaymentForm: React.FC<PaymentProps> = ({ alternative }) => {
   return (
     <>
       <div data-aos="fade-left">
-        <div className={`space-y-1 ${!alternative && "text-black"} my-3`}>
+        <div
+          className={`space-y-1 ${!alternative && "text-black"} my-3 ${
+            (chosenPlan == "5" || chosenPlan == "15") && "hidden"
+          }`}
+        >
           <h3 className="text-sm">Purchase 1 Credit for $5:</h3>
           <div className="w-full flex justify-center">
             <button
@@ -34,7 +41,7 @@ const PaymentForm: React.FC<PaymentProps> = ({ alternative }) => {
         <div
           className={`border-t-2 space-y-1 ${
             !alternative && "text-black"
-          } py-3`}
+          } py-3 ${(chosenPlan == "1" || chosenPlan == "15") && "hidden"}`}
         >
           <h3 className="text-sm">Purchase 5 Credits for $20:</h3>
           <div className="w-full flex justify-center">
@@ -49,7 +56,7 @@ const PaymentForm: React.FC<PaymentProps> = ({ alternative }) => {
         <div
           className={`border-t-2 space-y-1 ${
             !alternative && "text-black"
-          } py-3`}
+          } py-3 ${(chosenPlan == "1" || chosenPlan == "5") && "hidden"}`}
         >
           <h3 className="text-sm">Purchase 15 Credit for $50:</h3>
           <div className="w-full flex justify-center">

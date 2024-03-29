@@ -64,7 +64,7 @@ function App() {
               <Route path="/all-responses" element={<ListResponses />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/log-in" element={<Login />} />
-              <Route path="/register" element={<Register />} />
+              <Route path="/register/*" element={<Register />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/terms-of-service" element={<TermsOfService />} />
               <Route path="/contact-us" element={<ContactUs />} />
