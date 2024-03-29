@@ -12,5 +12,6 @@ export const API_ROUTES = {
   logIn: `${BASE_URL}/log-in`,
   logOut: `${BASE_URL}/log-out`,
   checkSession: `${BASE_URL}/check-session`,
+  verifyEmail: `${BASE_URL}/verify-email`,
   createCheckoutSession: `${BASE_URL}/create-checkout-session`,
 };

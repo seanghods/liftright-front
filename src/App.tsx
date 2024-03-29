@@ -15,6 +15,7 @@ import {
   NotFound,
   Profile,
   ListResponses,
+  VerifyEmail,
 } from "@/containers";
 import { useEffect, useState } from "react";
 import { API_ROUTES } from "./utils/constants";
@@ -68,6 +69,7 @@ function App() {
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/terms-of-service" element={<TermsOfService />} />
               <Route path="/contact-us" element={<ContactUs />} />
+              <Route path="/verify-email" element={<VerifyEmail />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>

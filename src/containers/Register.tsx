@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Register: React.FC = () => {
   const { user, setUser } = useUser();
-  const [showPaymentForm, setShowPaymentForm] = useState<boolean>(false);
+  const [showPaymentForm, setShowPaymentForm] = useState<boolean>(true);
   useEffect(() => {
     setShowPaymentForm(!!user);
   }, [user]);
@@ -142,6 +142,11 @@ const Register: React.FC = () => {
                 <h3 className="font-semibold text-xl text-gray-800">
                   Register{" "}
                 </h3>
+                {showPaymentForm && (
+                  <p className="my-3 w-[200px] text-gray-500 text-sm">
+                    Please check your email for a verification link.
+                  </p>
+                )}
                 <p className="text-gray-500 text-sm">
                   {showPaymentForm
                     ? "Purchase Credits to use LiftRight."

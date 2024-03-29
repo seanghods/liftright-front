@@ -12,10 +12,11 @@ interface ResponseType {
 }
 
 // Define the shape of your user object
-interface UserType {
+export interface UserType {
   email: string;
   credits: number;
   responses: ResponseType[];
+  verified: boolean;
 }
 
 // Optional: Define the shape of the context state including methods to update the state if necessary

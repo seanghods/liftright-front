@@ -9,3 +9,4 @@ export { default as PrivacyPolicy } from "./PrivacyPolicy";
 export { default as NotFound } from "./NotFound";
 export { default as ListResponses } from "./ListResponses";
 export { default as Profile } from "./Profile";
+export { default as VerifyEmail } from "./VerifyEmail";

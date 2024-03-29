@@ -1,10 +1,16 @@
 import { Button } from "react-daisyui";
 import { Link, useNavigate } from "react-router-dom";
 import landingVid from "../assets/landing/landing-vid3.mov";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 export const Hero: React.FC = () => {
   const navigate = useNavigate();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 2.0;
+    }
+  }, []);
   return (
     <section className="py-8 lg:py-20" id="home">
       <div className="container">
@@ -66,8 +72,8 @@ export const Hero: React.FC = () => {
                 autoPlay
                 className="rounded-lg"
                 muted
-                loop
                 playsInline
+                ref={videoRef}
               >
                 <source src={landingVid} type="video/mp4" />
                 Your browser does not support the video tag.
