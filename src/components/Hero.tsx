@@ -29,6 +29,7 @@ export const Hero: React.FC = () => {
                 className="rounded-lg"
                 muted
                 loop
+                playsInline
               >
                 <source src={landingVid} type="video/mp4" />
                 Your browser does not support the video tag.
