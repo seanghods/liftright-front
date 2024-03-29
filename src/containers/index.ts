@@ -7,3 +7,5 @@ export { default as ContactUs } from "./ContactUs";
 export { default as TermsOfService } from "./TermsOfService";
 export { default as PrivacyPolicy } from "./PrivacyPolicy";
 export { default as NotFound } from "./NotFound";
+export { default as ListResponses } from "./ListResponses";
+export { default as Profile } from "./Profile";

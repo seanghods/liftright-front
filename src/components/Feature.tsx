@@ -1,7 +1,5 @@
 import feature1Image from "@/assets/landing/feature-p1.jpeg";
 import feature2Image from "@/assets/landing/feature-p2.jpeg";
-import exampleVid from "../assets/landing/example.mov";
-import Typewriter from "typewriter-effect";
 import { Badge } from "react-daisyui";
 
 export const Feature: React.FC = () => {

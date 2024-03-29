@@ -10,7 +10,7 @@ const ContactUs: React.FC = () => {
     message: "",
   });
   useEffect(() => {
-    document.title = "Contact Us";
+    document.title = "LiftRight - Contact Us";
   }, []);
   useEffect(() => {
     if (user) {

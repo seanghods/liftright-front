@@ -1,9 +1,21 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
 
+interface ResponseType {
+  fullResponse: object;
+  key: string;
+  message: string;
+  feedback?: string;
+  userId: string;
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 // Define the shape of your user object
 interface UserType {
   email: string;
   credits: number;
+  responses: ResponseType[];
 }
 
 // Optional: Define the shape of the context state including methods to update the state if necessary

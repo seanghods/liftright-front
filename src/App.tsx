@@ -1,8 +1,7 @@
-import { Theme, useTheme } from "react-daisyui";
+import { Theme } from "react-daisyui";
 import { Route, Routes } from "react-router-dom";
 import { Topbar, Footer } from "@/components";
 import posthog from "posthog-js";
-// import { ThemeToggler } from "./components/ThemeToggler.tsx";
 import { ScrollToTop } from "@/utils/helpers.ts";
 import {
   Landing,
@@ -14,6 +13,8 @@ import {
   TermsOfService,
   PrivacyPolicy,
   NotFound,
+  Profile,
+  ListResponses,
 } from "@/containers";
 import { useEffect, useState } from "react";
 import { API_ROUTES } from "./utils/constants";
@@ -22,7 +23,7 @@ import { useUser } from "./UserContext";
 function App() {
   const { user, setUser } = useUser();
   const [fullLoadingPage, setFullLoadingPage] = useState<boolean>(false);
-  // const { theme } = useTheme();
+  useEffect(() => console.log(user), [user]);
   useEffect(() => {
     async function checkAuthenticationStatus() {
       setFullLoadingPage(true);
@@ -59,6 +60,8 @@ function App() {
               <Route path="/" element={<Landing />} />
               <Route path="/upload" element={<Upload />} />
               <Route path="/response/:id" element={<Response />} />
+              <Route path="/all-responses" element={<ListResponses />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/log-in" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
@@ -68,7 +71,6 @@ function App() {
             </Routes>
           </div>
           <Footer />
-          {/* <ThemeToggler /> */}
         </Theme>
       </div>
     </>

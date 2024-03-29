@@ -1,9 +1,11 @@
-import { useUser } from "@/UserContext";
 import { API_ROUTES } from "@/utils/constants";
 import React from "react";
 
-const PaymentForm: React.FC = () => {
-  const { user } = useUser();
+type PaymentProps = {
+  alternative?: boolean;
+};
+
+const PaymentForm: React.FC<PaymentProps> = ({ alternative }) => {
   const createCheckoutSession = async (type: string) => {
     const response = await fetch(API_ROUTES.createCheckoutSession, {
       method: "POST",
@@ -17,8 +19,8 @@ const PaymentForm: React.FC = () => {
   };
   return (
     <>
-      <div data-aos="fade-left ">
-        <div className="space-y-1 text-black my-3">
+      <div data-aos="fade-left">
+        <div className={`space-y-1 ${!alternative && "text-black"} my-3`}>
           <h3 className="text-sm">Purchase 1 Credit for $5:</h3>
           <div className="w-full flex justify-center">
             <button
@@ -29,7 +31,11 @@ const PaymentForm: React.FC = () => {
             </button>
           </div>
         </div>
-        <div className="border-t-2 space-y-1 text-black py-3">
+        <div
+          className={`border-t-2 space-y-1 ${
+            !alternative && "text-black"
+          } py-3`}
+        >
           <h3 className="text-sm">Purchase 5 Credits for $20:</h3>
           <div className="w-full flex justify-center">
             <button
@@ -40,7 +46,11 @@ const PaymentForm: React.FC = () => {
             </button>
           </div>
         </div>{" "}
-        <div className="border-t-2 space-y-1 text-black py-3">
+        <div
+          className={`border-t-2 space-y-1 ${
+            !alternative && "text-black"
+          } py-3`}
+        >
           <h3 className="text-sm">Purchase 15 Credit for $50:</h3>
           <div className="w-full flex justify-center">
             <button
@@ -51,7 +61,11 @@ const PaymentForm: React.FC = () => {
             </button>
           </div>
         </div>
-        <div className="text-sm text-gray-500 w-[200px] mt-6">
+        <div
+          className={`text-sm text-gray-500 ${
+            !alternative && "w-[200px]"
+          } mt-6`}
+        >
           You will be redirected to Stripe to complete payment.
         </div>
       </div>

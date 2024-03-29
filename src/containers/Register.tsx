@@ -6,7 +6,10 @@ import { Link } from "react-router-dom";
 
 const Register: React.FC = () => {
   const { user, setUser } = useUser();
-  const [showPaymentForm, setShowPaymentForm] = useState<boolean>(true);
+  const [showPaymentForm, setShowPaymentForm] = useState<boolean>(false);
+  useEffect(() => {
+    setShowPaymentForm(!!user);
+  }, [user]);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -101,7 +104,6 @@ const Register: React.FC = () => {
       }
       const data = await response.json();
       setUser(data.user);
-      setShowPaymentForm(true);
     } catch (error) {
       console.error("Registration failed:", error);
       setFormError((prevState) => ({

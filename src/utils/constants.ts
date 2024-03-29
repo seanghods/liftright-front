@@ -10,6 +10,7 @@ export const API_ROUTES = {
   contactUs: `${BASE_URL}/contact-us`,
   register: `${BASE_URL}/register`,
   logIn: `${BASE_URL}/log-in`,
+  logOut: `${BASE_URL}/log-out`,
   checkSession: `${BASE_URL}/check-session`,
   createCheckoutSession: `${BASE_URL}/create-checkout-session`,
 };

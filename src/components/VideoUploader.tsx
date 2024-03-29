@@ -4,7 +4,6 @@ import "@uppy/core/dist/style.css";
 import "@uppy/dashboard/dist/style.css";
 import { Dashboard } from "@uppy/react/";
 import XHRUpload from "@uppy/xhr-upload";
-import { LoadingIcon, Xmark } from "./sub-components/Icons";
 import LoadingAnalysis from "./sub-components/LoadingAnalysis";
 import { useUser } from "@/UserContext";
 
@@ -14,8 +13,30 @@ export type ApiResponse = {
   id: string | null;
 };
 
+export type Response = {
+  responseNav: ResponseNav;
+  responseObj: ResponseObj;
+};
+
+export type ResponseNav = {
+  message: string | null;
+  s3Link: string | null;
+  id: string | null;
+};
+
+export type ResponseObj = {
+  fullResponse: object;
+  key: string;
+  message: string;
+  feedback?: string;
+  userId: string;
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export const VideoUploader: React.FC = () => {
-  const { user } = useUser();
+  const { user, setUser } = useUser();
   const [uploadReady, setUploadReady] = useState<boolean>(false);
   const [awaitingResponse, setAwaitingResponse] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
@@ -34,13 +55,13 @@ export const VideoUploader: React.FC = () => {
       },
       autoProceed: false,
     });
-
     uppyInstance.use(XHRUpload, {
       endpoint:
         import.meta.env.MODE === "production"
           ? "https://api.liftrightai.com/api/response"
           : "http://localhost:3001/api/response",
       fieldName: "video",
+      withCredentials: true,
     });
 
     return uppyInstance;
@@ -68,18 +89,37 @@ export const VideoUploader: React.FC = () => {
       setUploadReady(true);
     });
 
-    uppy.on("file-removed", (file, reason) => {
+    uppy.on("file-removed", (_file, _reason) => {
       if (uppy.getFiles().length === 0) {
         setUploadReady(false);
       }
     });
     uppy.on("complete", (result: UploadResult) => {
       if (result.successful.length > 0) {
-        const response = result.successful[0].response;
-        setApiResponse(response?.body);
+        const response = result.successful[0].response?.body as Response;
+        setApiResponse(response.responseNav);
+        setUser((prevUser) =>
+          prevUser
+            ? {
+                ...prevUser,
+                responses: [
+                  ...(prevUser.responses || []),
+                  response.responseObj,
+                ],
+              }
+            : null
+        );
       } else {
         const response = result.failed[0].response;
         console.log(`Error: ${response?.body.err}`);
+        setUser((prevUser) =>
+          prevUser
+            ? {
+                ...prevUser,
+                credits: prevUser.credits + 1,
+              }
+            : null
+        );
         setError(true);
       }
     });
@@ -98,7 +138,7 @@ export const VideoUploader: React.FC = () => {
               width="600px"
               theme="dark"
               uppy={uppy}
-              disabled={!user}
+              disabled={!user || user.credits == 0 || !user.credits}
               note="Upload one video."
             />
           </div>
@@ -110,51 +150,20 @@ export const VideoUploader: React.FC = () => {
               onClick={() => {
                 if (uploadReady) {
                   uppy.upload();
+                  setUser((prevUser) =>
+                    prevUser
+                      ? {
+                          ...prevUser,
+                          credits: prevUser.credits ? prevUser.credits - 1 : 0,
+                        }
+                      : null
+                  );
                   setAwaitingResponse(true);
-                  document.getElementById("submit_modal").showModal();
                 }
               }}
             >
               {awaitingResponse ? "Submitting..." : "Submit"}
             </button>
-            <dialog
-              onClose={() => setError(false)}
-              id="submit_modal"
-              className="modal"
-            >
-              <div className="modal-box">
-                <form method="dialog">
-                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                    ✕
-                  </button>
-                </form>
-                {error ? (
-                  <>
-                    <h3 className="font-bold text-lg">Error!</h3>
-                    <div className="flex w-full justify-center mt-10">
-                      <Xmark />
-                    </div>
-                    <p className="py-4">
-                      Unfortunately, Liftright AI hit a snag in processing your
-                      video. The error has been reported and your credit has
-                      been refunded to you. Please try again soon.
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <h3 className="font-bold text-lg">Processing</h3>
-                    <div className="flex w-full justify-center my-5">
-                      <LoadingIcon />
-                    </div>
-                    <p className="py-4">
-                      Your video is currently processing and being analyzed by
-                      LiftRight. Please allow up to 30 seconds for a complete
-                      response.
-                    </p>
-                  </>
-                )}
-              </div>
-            </dialog>
           </div>
         </>
       )}
