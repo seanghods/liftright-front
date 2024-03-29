@@ -138,7 +138,6 @@ export const VideoUploader: React.FC = () => {
               height="450px"
               theme="dark"
               uppy={uppy}
-              disabled={!user || user.credits == 0 || !user.credits}
               note="Upload one video."
             />
           </div>
@@ -146,7 +145,9 @@ export const VideoUploader: React.FC = () => {
             <button
               className={`btn mb-12 w-28 ${
                 uploadReady ? "btn-primary" : "btn-disabled !bg-gray-900"
-              } ${awaitingResponse ? "btn-disabled brightness-150" : null}`}
+              } ${awaitingResponse ? "btn-disabled brightness-150" : null} ${
+                (!user || user.credits == 0 || !user.credits) && "btn-disabled"
+              }`}
               onClick={() => {
                 if (uploadReady) {
                   uppy.upload();

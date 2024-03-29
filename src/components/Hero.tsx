@@ -22,10 +22,13 @@ export const Hero: React.FC = () => {
               AI.
             </h1>
             <p className=" mt-8 md:text-lg">
-              Hiring a personal trainer is hard. And expensive.{" "}
+              Hiring a personal trainer is{" "}
+              <span className="text-red-200">hard</span>. And{" "}
+              <span className="text-yellow-100">expensive</span>.{" "}
             </p>
             <p className="mt-8 md:text-lg">
-              Get instant feedback on your form within seconds.{" "}
+              Get <span className="text-blue-300">instant feedback</span> on
+              your form within seconds.{" "}
             </p>
             <div className="flex flex-col justify-center my-8 mx-2 md:hidden">
               <video
