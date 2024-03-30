@@ -45,12 +45,16 @@ const ListResponses: React.FC = () => {
             </div>
           </>
         ) : (
-          <div>
-            You have no responses yet generated. Please{" "}
-            <Link className="text-blue-400 hover:text-blue-300" to="/upload">
-              upload a video
-            </Link>{" "}
-            to generate a response.
+          <div className="flex flex-col gap-8 items-center">
+            <p>You have no responses yet generated.</p>{" "}
+            <p>All your previously generated responses will be listed here.</p>{" "}
+            <p>
+              Please{" "}
+              <Link className="text-blue-400 hover:text-blue-300" to="/upload">
+                upload a video
+              </Link>{" "}
+              to generate a response.
+            </p>
           </div>
         )
       ) : (

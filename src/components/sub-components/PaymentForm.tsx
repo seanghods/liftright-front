@@ -46,7 +46,7 @@ const PaymentForm: React.FC<PaymentProps> = ({ alternative }) => {
           <div className="w-full flex justify-center">
             <button
               onClick={() => createCheckoutSession("one")}
-              className={`btn mt-3 btn-sm ${
+              className={`btn mt-3 btn-sm ${alternative && "btn-secondary"} ${
                 awaitingResponse.one &&
                 "btn-disabled !bg-gray-800 !text-gray-400"
               }`}
@@ -83,6 +83,8 @@ const PaymentForm: React.FC<PaymentProps> = ({ alternative }) => {
             <button
               onClick={() => createCheckoutSession("fifteen")}
               className={`btn btn-sm border-0 mt-3 ${
+                alternative && "btn-secondary"
+              } ${
                 awaitingResponse.fifteen &&
                 "btn-disabled !bg-gray-800 !text-gray-400"
               }`}
