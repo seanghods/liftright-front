@@ -1,4 +1,5 @@
 import { useUser } from "@/UserContext";
+import { GoogleIcon } from "@/components/sub-components/Icons";
 import PaymentForm from "@/components/sub-components/PaymentForm";
 import { API_ROUTES } from "@/utils/constants";
 import React, { useEffect, useState } from "react";
@@ -113,12 +114,18 @@ const Register: React.FC = () => {
       }));
     }
   };
-
+  function handleGoogle() {
+    const url =
+      import.meta.env.MODE === "production"
+        ? "https://api.liftrightai.com/auth/google"
+        : "http://localhost:3001/auth/google";
+    window.location.href = url;
+  }
   return (
     <>
       <div className="relative flex-1 flex flex-col">
         <div
-          className={`flex-1 bg-no-repeat bg-cover bg-center bg-gym-bg2 py-24 ${
+          className={`flex-1 bg-no-repeat bg-cover bg-center bg-gym-bg-register py-24 ${
             showPaymentForm ? "md:py-48" : "md:py-24"
           } flex flex-row mx-0 justify-center`}
         >
@@ -158,6 +165,22 @@ const Register: React.FC = () => {
                 <PaymentForm />
               ) : (
                 <>
+                  <div className="w-full flex justify-center">
+                    <button
+                      onClick={() => handleGoogle()}
+                      className="flex btn btn-sm btn-primary"
+                    >
+                      <GoogleIcon />
+                      Sign up with Google
+                    </button>
+                  </div>
+                  <div className="my-5 flex w-full items-center justify-between space-x-3.5">
+                    <div className="h-[1px] grow bg-gray-200"></div>
+                    <div className="shrink-0 font-medium uppercase text-gray-400">
+                      Or
+                    </div>
+                    <div className="h-[1px] grow bg-gray-200"></div>
+                  </div>
                   <form
                     method="post"
                     onSubmit={handleSubmit}

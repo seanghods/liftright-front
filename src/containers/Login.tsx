@@ -1,4 +1,5 @@
 import { useUser } from "@/UserContext";
+import { GoogleIcon } from "@/components/sub-components/Icons";
 import { API_ROUTES } from "@/utils/constants";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -67,10 +68,17 @@ const Login: React.FC = () => {
       });
     }
   };
+  function handleGoogle() {
+    const url =
+      import.meta.env.MODE === "production"
+        ? "https://api.liftrightai.com/auth/google"
+        : "http://localhost:3001/auth/google";
+    window.location.href = url;
+  }
   return (
     <>
       <div className="relative flex-1 flex flex-col">
-        <div className="flex-1 md:min-h-[800px] bg-no-repeat bg-cover bg-center bg-gym-bg py-24 md:py-36 flex flex-row mx-0 justify-center">
+        <div className="flex-1 md:min-h-[800px] bg-no-repeat bg-cover bg-center bg-gym-bg-login py-24 md:py-36 flex flex-row mx-0 justify-center">
           <div className="hidden sm:flex flex-col self-center p-10 sm:max-w-5xl xl:max-w-2xl">
             <div
               data-aos="fade-right"
@@ -98,6 +106,22 @@ const Login: React.FC = () => {
                 <div className="text-black">You are currently signed in.</div>
               ) : (
                 <>
+                  <div className="w-full flex justify-center">
+                    <button
+                      onClick={() => handleGoogle()}
+                      className="flex btn btn-sm btn-primary"
+                    >
+                      <GoogleIcon />
+                      Sign in with Google
+                    </button>
+                  </div>
+                  <div className="my-5 flex w-full items-center justify-between space-x-3.5">
+                    <div className="h-[1px] grow bg-gray-200"></div>
+                    <div className="shrink-0 font-medium uppercase text-gray-400">
+                      Or
+                    </div>
+                    <div className="h-[1px] grow bg-gray-200"></div>
+                  </div>
                   <form
                     method="post"
                     onSubmit={handleLogIn}

@@ -1,16 +1,10 @@
 import { Button } from "react-daisyui";
 import { Link, useNavigate } from "react-router-dom";
-import landingVid from "../assets/landing/landing-vid3.mov";
-import React, { useEffect, useRef } from "react";
+import landingVid from "../assets/landing/landing-vid.mov";
+import React from "react";
 
 export const Hero: React.FC = () => {
   const navigate = useNavigate();
-  const videoRef = useRef<HTMLVideoElement>(null);
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = 2.0;
-    }
-  }, []);
   return (
     <section className="py-8 lg:py-20" id="home">
       <div className="container">
@@ -23,8 +17,8 @@ export const Hero: React.FC = () => {
             </h1>
             <p className=" mt-8 md:text-lg">
               Hiring a personal trainer is{" "}
-              <span className="text-red-200">hard</span>. And{" "}
-              <span className="text-red-200">expensive</span>.{" "}
+              <span className="text-red-100">hard</span>. And{" "}
+              <span className="text-red-100">expensive</span>.{" "}
             </p>
             <p className="mt-8 md:text-lg">
               Get <span className="text-blue-300">instant feedback</span> on
@@ -45,10 +39,10 @@ export const Hero: React.FC = () => {
               </video>
             </div>
             <p className=" mt-8 md:text-lg">
-              Utilize our state-of-the-art Vision AI & GPTs to analyze your
-              weightlifting form and offer real feedback in seconds. Upload a
-              video and LiftRight will analyze it directly and return
-              improvements.
+              Utilize our state-of-the-art Vision AI & GPTs trained on thousands
+              of professional fitness publications, insights, and research to
+              analyze your weightlifting form and offer real feedback in
+              seconds.
             </p>
             <div className="mt-8 md:mt-16 inline-flex gap-3">
               <Link to="/register" style={{ textDecoration: "none" }}>
@@ -76,7 +70,6 @@ export const Hero: React.FC = () => {
                 className="rounded-lg"
                 muted
                 playsInline
-                ref={videoRef}
               >
                 <source src={landingVid} type="video/mp4" />
                 Your browser does not support the video tag.

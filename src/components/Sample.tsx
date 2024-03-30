@@ -1,5 +1,5 @@
 import React from "react";
-import example from "../assets/landing/example.mov";
+import example from "../assets/landing/sample.mp4";
 import Typewriter from "typewriter-effect";
 import { Badge } from "react-daisyui";
 

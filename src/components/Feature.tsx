@@ -1,5 +1,5 @@
-import feature1Image from "@/assets/landing/feature-p1.jpeg";
-import feature2Image from "@/assets/landing/feature-p2.jpeg";
+import feature1Image from "@/assets/landing/feature-1.jpg";
+import feature2Image from "@/assets/landing/feature-2.jpg";
 import { Badge } from "react-daisyui";
 
 export const Feature: React.FC = () => {
