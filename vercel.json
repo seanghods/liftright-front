@@ -1,12 +1,4 @@
 {
-  "routes": [
-    {
-      "src": "/.well-known/apple-developer-merchantid-domain-association",
-      "dest": "/public/.well-known/apple-developer-merchantid-domain-association",
-      "methods": ["GET"],
-      "continue": false
-    }
-  ],
   "rewrites": [{ "source": "/(.*)", "destination": "/" }],
   "headers": [
     {
