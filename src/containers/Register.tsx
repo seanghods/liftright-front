@@ -146,10 +146,10 @@ const Register: React.FC = () => {
               </p>
             </div>
           </div>
-          <div className="flex justify-center self-center w-[375px]">
+          <div className="flex justify-center self-center">
             <div
               data-aos="fade-left"
-              className="w-[350px] p-8 bg-primary-content mx-auto rounded-2xl w-100"
+              className="w-[325px] p-8 bg-primary-content mx-auto rounded-2xl w-100"
             >
               <div className="mb-4">
                 <h3 className="font-semibold text-xl text-gray-800">
