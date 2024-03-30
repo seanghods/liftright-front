@@ -30,9 +30,9 @@ const PaymentForm: React.FC<PaymentProps> = ({ alternative }) => {
       const err = await response.json();
       setError(err.error);
     }
-    setAwaitingResponse((prevState) => ({ ...prevState, [type]: false }));
     const { url } = await response.json();
     if (url) window.location.href = url;
+    setAwaitingResponse((prevState) => ({ ...prevState, [type]: false }));
   };
   return (
     <>
