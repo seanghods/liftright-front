@@ -6,7 +6,11 @@ import { useUser } from "@/UserContext";
 import { API_ROUTES } from "@/utils/constants";
 import posthog from "posthog-js";
 
-export const Topbar: React.FC = () => {
+type Props = {
+  fullLoadingPage: boolean;
+};
+
+export const Topbar: React.FC<Props> = ({ fullLoadingPage }) => {
   const { user, setUser } = useUser();
   const [drawerOpened, setDrawerOpened] = useState(false);
   const [atTop, setAtTop] = useState(true);
@@ -126,7 +130,9 @@ export const Topbar: React.FC = () => {
 
             <Navbar.Center className="hidden lg:flex">
               <Menu horizontal size="sm" className="gap-2 px-1">
-                {user ? (
+                {fullLoadingPage ? (
+                  <div className="h-[28px] skeleton w-[450px]"></div>
+                ) : user ? (
                   <>
                     <Menu.Item className="font-medium">
                       <Link to="/upload">Upload</Link>
@@ -167,7 +173,9 @@ export const Topbar: React.FC = () => {
             </Navbar.Center>
 
             <Navbar.End className="gap-3">
-              {user ? (
+              {fullLoadingPage ? (
+                <div className="h-[28px] skeleton w-[219px]"></div>
+              ) : user ? (
                 <Button onClick={() => handleLogOut()} size="sm" color="ghost">
                   Log Out
                 </Button>

@@ -25,7 +25,7 @@ import { useUser } from "./UserContext";
 
 function App() {
   const { setUser } = useUser();
-  const [fullLoadingPage, setFullLoadingPage] = useState<boolean>(false);
+  const [fullLoadingPage, setFullLoadingPage] = useState<boolean>(true);
   useEffect(() => {
     async function checkAuthenticationStatus() {
       setFullLoadingPage(true);
@@ -56,8 +56,7 @@ function App() {
       <div className="flex flex-col min-h-screen">
         <ScrollToTop />
         <Theme className="flex-1 flex flex-col min-h-screen" dataTheme={"dark"}>
-          {fullLoadingPage && <FullLoadingPage />}
-          <Topbar />
+          <Topbar fullLoadingPage={fullLoadingPage} />
           <div className="flex-1 flex flex-col">
             <Routes>
               <Route path="/" element={<Landing />} />
