@@ -1,6 +1,6 @@
 import { Theme } from "react-daisyui";
 import { Route, Routes } from "react-router-dom";
-import { Topbar, Footer, FullLoadingPage } from "@/components";
+import { Topbar, Footer } from "@/components";
 import posthog from "posthog-js";
 import { ScrollToTop } from "@/utils/helpers.ts";
 import {
@@ -75,7 +75,7 @@ function App() {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
-          {!fullLoadingPage && <Footer />}
+          <Footer />
         </Theme>
       </div>
     </>
