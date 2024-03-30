@@ -29,8 +29,8 @@ export const Pricing: React.FC = () => {
                       </span>
                     </p>
                     <p className="mt-4 text-sm">
-                      Try out our Weightlifting AI at our lowest price point.
-                      See what the hype is about for your own video.
+                      Try out LiftRight AI at our lowest price point. See what
+                      the hype is about for your own video.
                     </p>
                   </Card.Body>
                 </Card>
@@ -60,9 +60,12 @@ export const Pricing: React.FC = () => {
                       </Badge>
                     </div>
 
-                    <p className="mt-4 flex items-baseline">
+                    <p className="mt-4 flex items-baseline gap-2">
+                      <span className="text-3xl line-through text-white">
+                        $25
+                      </span>
                       <span className="text-5xl font-bold tracking-tight text-primary">
-                        $20
+                        $20{" "}
                       </span>
                     </p>
                     <p className="mt-6 text-sm">
