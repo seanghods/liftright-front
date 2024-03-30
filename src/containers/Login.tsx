@@ -98,7 +98,7 @@ const Login: React.FC = () => {
           <div className="flex justify-center self-center">
             <div
               data-aos="fade-left"
-              className="p-8 bg-primary-content mx-auto rounded-2xl w-[350px]"
+              className="p-8 bg-primary-content mx-auto rounded-2xl w-[325px]"
             >
               <div className="mb-4">
                 <h3 className="font-semibold text-xl text-gray-800">
@@ -113,7 +113,7 @@ const Login: React.FC = () => {
                   <div className="w-full flex justify-center">
                     <button
                       onClick={() => handleGoogle()}
-                      className="flex btn btn-sm btn-success"
+                      className="flex btn btn-sm btn-primary"
                     >
                       <GoogleIcon />
                       Sign in with Google

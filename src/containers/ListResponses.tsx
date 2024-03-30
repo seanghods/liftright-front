@@ -45,9 +45,19 @@ const ListResponses: React.FC = () => {
             </div>
           </>
         ) : (
-          <div className="flex flex-col gap-8 items-center">
+          <div className="flex flex-col gap-8 items-center text-center">
             <p>You have no responses yet generated.</p>{" "}
             <p>All your previously generated responses will be listed here.</p>{" "}
+            <table className="table">
+              {/* head */}
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Date</th>
+                  <th>Message</th>
+                </tr>
+              </thead>
+            </table>
             <p>
               Please{" "}
               <Link className="text-blue-400 hover:text-blue-300" to="/upload">

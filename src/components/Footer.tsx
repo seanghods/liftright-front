@@ -27,7 +27,7 @@ export const Footer: React.FC<Props> = ({ fullLoadingPage }) => {
                       Landing
                     </Link>
                   </div>
-                  <div>
+                  {/* <div>
                     <Link
                       className="text-base transition-all duration-500 hover:text-primary"
                       to="#"
@@ -42,7 +42,7 @@ export const Footer: React.FC<Props> = ({ fullLoadingPage }) => {
                     >
                       Blogs
                     </Link>
-                  </div>
+                  </div> */}
                   <div>
                     <Link
                       className="text-base transition-all duration-500 hover:text-primary"

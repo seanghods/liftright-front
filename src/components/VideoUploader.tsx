@@ -51,7 +51,7 @@ export const VideoUploader: React.FC = () => {
       restrictions: {
         maxFileSize: 20000000,
         maxNumberOfFiles: 1,
-        allowedFileTypes: ["video/*"],
+        allowedFileTypes: [".mp4", ".mov"],
       },
       autoProceed: false,
     });

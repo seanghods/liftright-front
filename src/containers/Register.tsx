@@ -173,7 +173,7 @@ const Register: React.FC = () => {
                   <div className="w-full flex justify-center">
                     <button
                       onClick={() => handleGoogle()}
-                      className="flex btn btn-sm btn-success"
+                      className="flex btn btn-sm btn-primary"
                     >
                       <GoogleIcon />
                       Sign up with Google

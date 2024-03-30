@@ -74,37 +74,81 @@ export const Topbar: React.FC<Props> = ({ fullLoadingPage }) => {
                       {user ? (
                         <>
                           <Menu.Item className="font-medium">
-                            <Link to="/upload">Upload</Link>
+                            <Link
+                              onClick={() => setDrawerOpened(false)}
+                              to="/upload"
+                            >
+                              Upload
+                            </Link>
                           </Menu.Item>
                           <Menu.Item className="font-medium">
-                            <Link to="/all-responses">Responses</Link>
+                            <Link
+                              onClick={() => setDrawerOpened(false)}
+                              to="/all-responses"
+                            >
+                              Responses
+                            </Link>
                           </Menu.Item>
                           <Menu.Item className="font-medium">
-                            <Link to="/profile">Profile</Link>
+                            <Link
+                              onClick={() => setDrawerOpened(false)}
+                              to="/profile"
+                            >
+                              Profile
+                            </Link>
                           </Menu.Item>
                           <Menu.Item className="font-medium">
-                            <Link to="/">Landing</Link>
+                            <Link onClick={() => setDrawerOpened(false)} to="/">
+                              Landing
+                            </Link>
                           </Menu.Item>
                         </>
                       ) : (
                         <>
                           <Menu.Item className="font-medium">
-                            <a href="/#home">Home</a>
+                            <Link onClick={() => setDrawerOpened(false)} to="/">
+                              Home
+                            </Link>
                           </Menu.Item>
                           <Menu.Item className="font-medium">
-                            <a href="/#sample">Sample</a>
+                            <a
+                              onClick={() => setDrawerOpened(false)}
+                              href="/#sample"
+                            >
+                              Sample
+                            </a>
                           </Menu.Item>
                           <Menu.Item className="font-medium">
-                            <a href="/#features">Features</a>
+                            <a
+                              onClick={() => setDrawerOpened(false)}
+                              href="/#features"
+                            >
+                              Features
+                            </a>
                           </Menu.Item>
                           <Menu.Item className="font-medium">
-                            <a href="/#pricing">Pricing</a>
+                            <a
+                              onClick={() => setDrawerOpened(false)}
+                              href="/#pricing"
+                            >
+                              Pricing
+                            </a>
                           </Menu.Item>
                           <Menu.Item className="font-medium">
-                            <a href="/#faq">FAQ</a>
+                            <a
+                              onClick={() => setDrawerOpened(false)}
+                              href="/#faq"
+                            >
+                              FAQ
+                            </a>
                           </Menu.Item>
                           <Menu.Item className="font-medium">
-                            <Link to="/upload">Upload</Link>
+                            <Link
+                              onClick={() => setDrawerOpened(false)}
+                              to="/upload"
+                            >
+                              Upload
+                            </Link>
                           </Menu.Item>
                         </>
                       )}
