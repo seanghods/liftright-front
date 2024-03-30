@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
   const { user, setUser } = useUser();
+  const [awaitingResponse, setAwaitingResponse] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -36,6 +37,7 @@ const Login: React.FC = () => {
     }
 
     try {
+      setAwaitingResponse(true);
       const response = await fetch(API_ROUTES.logIn, {
         method: "POST",
         credentials: "include",
@@ -48,6 +50,7 @@ const Login: React.FC = () => {
         }),
       });
       if (!response.ok) {
+        setAwaitingResponse(false);
         const error = await response.json();
         if (error.message) {
           setFormError({
@@ -58,6 +61,7 @@ const Login: React.FC = () => {
           throw new Error("Failed to register");
         }
       }
+      setAwaitingResponse(false);
       const data = await response.json();
       setUser(data.user);
       navigate("/upload");
@@ -109,7 +113,7 @@ const Login: React.FC = () => {
                   <div className="w-full flex justify-center">
                     <button
                       onClick={() => handleGoogle()}
-                      className="flex btn btn-sm btn-primary"
+                      className="flex btn btn-sm btn-success"
                     >
                       <GoogleIcon />
                       Sign in with Google
@@ -171,9 +175,12 @@ const Login: React.FC = () => {
                     <div>
                       <button
                         type="submit"
-                        className="btn btn-primary w-full flex justify-center rounded-full tracking-wide shadow-lg"
+                        className={`btn btn-primary w-full flex justify-center rounded-full tracking-wide shadow-lg ${
+                          awaitingResponse &&
+                          "btn-disabled !bg-gray-800 !text-gray-400"
+                        }`}
                       >
-                        Sign in
+                        {awaitingResponse ? "Signing in..." : "Sign in"}
                       </button>
                     </div>
                   </form>

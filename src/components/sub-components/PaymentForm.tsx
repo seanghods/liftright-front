@@ -8,9 +8,15 @@ type PaymentProps = {
 
 const PaymentForm: React.FC<PaymentProps> = ({ alternative }) => {
   const [error, setError] = useState("");
+  const [awaitingResponse, setAwaitingResponse] = useState({
+    one: false,
+    five: false,
+    fifteen: false,
+  });
   const params = useParams();
   const chosenPlan = params["*"];
   const createCheckoutSession = async (type: string) => {
+    setAwaitingResponse((prevState) => ({ ...prevState, [type]: true }));
     const response = await fetch(API_ROUTES.createCheckoutSession, {
       method: "POST",
       credentials: "include",
@@ -20,9 +26,11 @@ const PaymentForm: React.FC<PaymentProps> = ({ alternative }) => {
       body: JSON.stringify({ type }),
     });
     if (!response.ok) {
+      setAwaitingResponse((prevState) => ({ ...prevState, [type]: false }));
       const err = await response.json();
       setError(err.error);
     }
+    setAwaitingResponse((prevState) => ({ ...prevState, [type]: false }));
     const { url } = await response.json();
     if (url) window.location.href = url;
   };
@@ -38,9 +46,12 @@ const PaymentForm: React.FC<PaymentProps> = ({ alternative }) => {
           <div className="w-full flex justify-center">
             <button
               onClick={() => createCheckoutSession("one")}
-              className="btn mt-3 btn-sm"
+              className={`btn mt-3 btn-sm ${
+                awaitingResponse.one &&
+                "btn-disabled !bg-gray-800 !text-gray-400"
+              }`}
             >
-              Purchase
+              {awaitingResponse.one ? "Purchasing..." : "Purchase"}
             </button>
           </div>
         </div>
@@ -53,9 +64,12 @@ const PaymentForm: React.FC<PaymentProps> = ({ alternative }) => {
           <div className="w-full flex justify-center">
             <button
               onClick={() => createCheckoutSession("five")}
-              className="btn btn-sm btn-primary mt-3"
+              className={`btn btn-sm btn-primary mt-3 ${
+                awaitingResponse.five &&
+                "btn-disabled !bg-gray-800 !text-gray-400"
+              }`}
             >
-              Purchase
+              {awaitingResponse.five ? "Purchasing..." : "Purchase"}
             </button>
           </div>
         </div>{" "}
@@ -68,9 +82,12 @@ const PaymentForm: React.FC<PaymentProps> = ({ alternative }) => {
           <div className="w-full flex justify-center">
             <button
               onClick={() => createCheckoutSession("fifteen")}
-              className="btn btn-sm border-0 mt-3"
+              className={`btn btn-sm border-0 mt-3 ${
+                awaitingResponse.fifteen &&
+                "btn-disabled !bg-gray-800 !text-gray-400"
+              }`}
             >
-              Purchase
+              {awaitingResponse.fifteen ? "Purchasing..." : "Purchase"}
             </button>
           </div>
         </div>
