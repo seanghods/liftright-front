@@ -1,6 +1,6 @@
 import { Button } from "react-daisyui";
 import { Link, useNavigate } from "react-router-dom";
-import landingVid from "../assets/landing/landing-vid.mov";
+import landingVid from "../assets/landing/landing-v.mp4";
 import React from "react";
 
 export const Hero: React.FC = () => {
@@ -69,6 +69,7 @@ export const Hero: React.FC = () => {
                 autoPlay
                 className="rounded-lg"
                 muted
+                loop
                 playsInline
               >
                 <source src={landingVid} type="video/mp4" />
