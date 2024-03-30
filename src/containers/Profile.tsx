@@ -15,9 +15,14 @@ const Profile: React.FC = () => {
       </h1>
       {user ? (
         <>
-          <div>Email: {user?.email}</div>
-          <div>Credits: {user?.credits || 0}</div>
+          <div>
+            Email: <strong>{user?.email}</strong>
+          </div>
+          <div>
+            Credits: <strong>{user?.credits || 0}</strong>
+          </div>
           <div className="w-2/3 md:w-1/3">
+            <div className="mb-8 text-center font-bold">Purchase credits</div>
             <PaymentForm alternative={true} />
           </div>
         </>
