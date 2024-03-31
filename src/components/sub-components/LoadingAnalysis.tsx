@@ -15,7 +15,6 @@ const LoadingAnalysis: React.FC<LoadingAnalysisProps> = ({
   const [progress, setProgress] = useState(0);
   const [finalizeAnimation, setFinalizeAnimation] = useState(false);
   const navigate = useNavigate();
-
   useEffect(() => {
     // React to changes in apiResponse.message to potentially finalize the animation.
     if (apiResponse?.message && !finalizeAnimation) {
@@ -27,7 +26,7 @@ const LoadingAnalysis: React.FC<LoadingAnalysisProps> = ({
     // Start the animation only once, and manage progression and finalization within.
     let animationFrameId: number;
     let start: DOMHighResTimeStamp | null = null;
-    const duration = 45000; // Total for the initial animation
+    const duration = 99000; // Total for the initial animation
     let finalizingStart: DOMHighResTimeStamp | null = null; // Track start of finalization
 
     const animateProgress = (timestamp: DOMHighResTimeStamp) => {
@@ -70,7 +69,7 @@ const LoadingAnalysis: React.FC<LoadingAnalysisProps> = ({
           }),
         250
       );
-  }, [progress]);
+  }, [progress, apiResponse?.message]);
   return (
     <>
       {error ? (
@@ -103,7 +102,7 @@ const LoadingAnalysis: React.FC<LoadingAnalysisProps> = ({
                 Your video is currently processing and being analyzed by
                 LiftRight.
               </p>
-              <p>Please allow up to 45 seconds for a complete response.</p>
+              <p>Please allow up to 1-2 minutes for a complete response.</p>
             </div>
             <progress
               id="progressBar"

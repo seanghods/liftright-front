@@ -49,7 +49,7 @@ export const VideoUploader: React.FC = () => {
     const uppyInstance = new Uppy({
       meta: { type: "video" },
       restrictions: {
-        maxFileSize: 20000000,
+        maxFileSize: 200000000,
         maxNumberOfFiles: 1,
         allowedFileTypes: [".mp4", ".mov"],
       },
@@ -67,7 +67,17 @@ export const VideoUploader: React.FC = () => {
     return uppyInstance;
   }, []);
   useEffect(() => {
-    uppy.on("file-added", (file) => {
+    uppy.on("file-added", async (file) => {
+      const video = document.createElement("video");
+      video.preload = "metadata";
+      video.onloadedmetadata = function () {
+        window.URL.revokeObjectURL(video.src);
+        if (video.duration > 25) {
+          uppy.removeFile(file.id);
+          alert("Please select a video that is 25 seconds or shorter.");
+        }
+      };
+      video.src = URL.createObjectURL(file.data);
       if (file.type?.includes("video")) {
         const thumbnailCount = 1;
         const VideoThumbnails = (window as any).VideoThumbnails;
@@ -138,7 +148,7 @@ export const VideoUploader: React.FC = () => {
               height="450px"
               theme="dark"
               uppy={uppy}
-              note="Upload one video."
+              note="Upload one video 25 seconds or shorter in mp4 or mov format."
             />
           </div>
           <div data-aos="fade-up" className="w-full flex justify-center">

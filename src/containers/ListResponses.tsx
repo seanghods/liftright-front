@@ -27,19 +27,29 @@ const ListResponses: React.FC = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {user.responses.map((response, index) => {
-                    return (
-                      <tr
-                        onClick={() => navigate(`/response/${response._id}`)}
-                        className="hover:bg-gray-800 hover:cursor-pointer"
-                        key={index}
-                      >
-                        <th>{index + 1}</th>
-                        <td>{response.createdAt.split("T")[0]}</td>
-                        <td>{response.message.slice(0, 100)}</td>
-                      </tr>
-                    );
-                  })}
+                  {user.responses
+                    .sort((a, b) => {
+                      if (a.createdAt < b.createdAt) {
+                        return 1;
+                      }
+                      if (a.createdAt > b.createdAt) {
+                        return -1;
+                      }
+                      return 0;
+                    })
+                    .map((response, index) => {
+                      return (
+                        <tr
+                          onClick={() => navigate(`/response/${response._id}`)}
+                          className="hover:bg-gray-800 hover:cursor-pointer"
+                          key={index}
+                        >
+                          <th>{index + 1}</th>
+                          <td>{response.createdAt.split("T")[0]}</td>
+                          <td>{response.message.slice(0, 100)}</td>
+                        </tr>
+                      );
+                    })}
                 </tbody>
               </table>
             </div>
