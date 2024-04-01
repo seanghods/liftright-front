@@ -50,10 +50,11 @@ const Response: React.FC = () => {
     final.map((line: string, index: number) => {
       return (
         <div key={index}>
-          {index == 0 ? (
-            <div className="border-b-2 border-gray-700 p-3">
-              {renderFormattedText(line)}
-            </div>
+          {line.toLowerCase() == "initial lift:" ||
+          line.toLowerCase() == "mid-lift:" ||
+          line.toLowerCase() == "final position of lift:" ||
+          line.toLowerCase() == "final position:" ? (
+            <div className="font-bold">{renderFormattedText(line)}</div>
           ) : index == final.length - 1 ? (
             <div className="border-t-2 border-gray-700 p-3">
               {renderFormattedText(line)}
@@ -77,7 +78,7 @@ const Response: React.FC = () => {
           data-aos="fade-down"
           className="text-2xl font-black tracking-tighter lg:text-4xl lg:leading-none text-center mt-12"
         >
-          Analysis
+          Response
         </h1>
         <div className="text-center">
           <video
@@ -94,6 +95,9 @@ const Response: React.FC = () => {
           </video>
         </div>
         <div className="md:w-4/5 xl:w-2/3 flex flex-col gap-4 p-4 mb-10 md:p-12Z">
+          <div className="p-3 border-b-2 border-gray-700 font-bold text-xl">
+            Analysis:
+          </div>
           {finalMessage}
         </div>
         {feedbackSubmitted ? (
