@@ -18,14 +18,13 @@ export const FAQ: React.FC = () => {
           <div className="space-y-4 lg:w-1/2">
             <Collapse className="border border-base-content/10" icon="arrow">
               <Collapse.Title className="text-xl font-medium">
-                Why is it expensive?
+                Why isn't it free?
               </Collapse.Title>
               <Collapse.Content>
                 <p className="text-base">
-                  LiftRight takes considerably more resources to parse videos,
+                  LiftRight takes considerable resources to parse videos,
                   analyze the frames, and return personalized feedback. This
                   comes at a direct cost to us, which factors into the pricing.
-                  This is also why we cannot provide free trials.
                 </p>
               </Collapse.Content>
             </Collapse>
