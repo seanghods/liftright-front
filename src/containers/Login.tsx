@@ -1,6 +1,7 @@
 import { useUser } from "@/UserContext";
 import { GoogleIcon } from "@/components/sub-components/Icons";
 import { API_ROUTES } from "@/utils/constants";
+import { showDormantToast } from "@/utils/dormantMode";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -73,11 +74,7 @@ const Login: React.FC = () => {
     }
   };
   function handleGoogle() {
-    const url =
-      import.meta.env.MODE === "production"
-        ? "https://api.liftrightai.com/auth/google"
-        : "http://localhost:3001/auth/google";
-    window.location.href = url;
+    showDormantToast();
   }
   return (
     <>
