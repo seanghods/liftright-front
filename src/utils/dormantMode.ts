@@ -1,28 +1,43 @@
 import { BASE_URL } from "./constants";
 
 const DORMANT_MESSAGE =
-  "This site is currently paused. Sign-ups, logins, and payments are temporarily disabled.";
+  "Site is in archive mode — sign-ups, logins, and payments are disabled.";
 
 const TOAST_CONTAINER_ID = "dormant-toast-container";
-let lastToastAt = 0;
+let dismissTimer: number | null = null;
 
 export function showDormantToast() {
-  const now = Date.now();
-  if (now - lastToastAt < 1500) return;
-  lastToastAt = now;
-
   const container = ensureToastContainer();
-  const toast = document.createElement("div");
-  toast.className = "alert alert-warning shadow-lg max-w-sm";
-  toast.setAttribute("role", "status");
-  toast.textContent = DORMANT_MESSAGE;
-  container.appendChild(toast);
+  let toast = container.firstElementChild as HTMLElement | null;
 
-  setTimeout(() => {
-    toast.style.transition = "opacity 300ms";
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.setAttribute("role", "status");
+    toast.className =
+      "rounded-lg bg-neutral text-neutral-content shadow-lg px-4 py-3 text-sm leading-snug border border-base-content/10";
     toast.style.opacity = "0";
-    setTimeout(() => toast.remove(), 300);
-  }, 4500);
+    toast.style.transform = "translateY(-8px)";
+    toast.style.transition = "opacity 200ms ease, transform 200ms ease";
+    toast.textContent = DORMANT_MESSAGE;
+    container.appendChild(toast);
+    requestAnimationFrame(() => {
+      if (!toast) return;
+      toast.style.opacity = "1";
+      toast.style.transform = "translateY(0)";
+    });
+  } else {
+    toast.style.opacity = "1";
+    toast.style.transform = "translateY(0)";
+  }
+
+  const current = toast;
+  if (dismissTimer != null) window.clearTimeout(dismissTimer);
+  dismissTimer = window.setTimeout(() => {
+    current.style.opacity = "0";
+    current.style.transform = "translateY(-8px)";
+    window.setTimeout(() => current.remove(), 250);
+    dismissTimer = null;
+  }, 4000);
 }
 
 function ensureToastContainer(): HTMLElement {
@@ -30,7 +45,9 @@ function ensureToastContainer(): HTMLElement {
   if (!el) {
     el = document.createElement("div");
     el.id = TOAST_CONTAINER_ID;
-    el.className = "toast toast-top toast-end z-[9999]";
+    el.className =
+      "fixed top-4 left-1/2 -translate-x-1/2 z-[9999] flex flex-col items-center pointer-events-none";
+    el.style.width = "min(28rem, calc(100vw - 2rem))";
     document.body.appendChild(el);
   }
   return el;
